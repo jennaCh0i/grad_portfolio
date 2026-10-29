@@ -126,6 +126,10 @@ summary.pill--active:hover { background: #46a9d0; }
 }
 .lead strong { font-weight: 600; }
 .lead__line { display: block; white-space: nowrap; }
+/* Intro block scaled to 80% on tablet/desktop */
+@media (min-width: 721px) {
+  .lead { zoom: 0.8; }
+}
 
 .flow { position: relative; display: inline-block; vertical-align: top; height: 31px; }
 .flow__chip {
