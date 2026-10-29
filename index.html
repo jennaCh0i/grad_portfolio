@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jenna Choi — Interaction Design + Motion</title>
+  <meta name="description" content="Jenna Choi is a designer creating experiences that help people stay in the flow." />
+  <meta property="og:title" content="Jenna Choi — Interaction Design + Motion" />
+  <meta property="og:description" content="Jenna Choi is a designer creating experiences that help people stay in the flow." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="pill pill--identity" href="/">
+      <span>Jenna Choi</span>
+      <span class="pill__sub">Interaction Design + Motion</span>
+    </a>
+
+    <details class="menu menu--work">
+      <summary class="pill pill--active">
+        <span>Work</span><span class="pill__caret" aria-hidden="true">▾</span>
+      </summary>
+      <ul class="menu__list">
+        <li><a href="#work" data-filter-link="all">All</a></li>
+        <li><a href="#work" data-filter-link="uiux">UI/UX</a></li>
+        <li><a href="#work" data-filter-link="motion">Motion</a></li>
+        <li><a href="#work" data-filter-link="identity">Identity</a></li>
+      </ul>
+    </details>
+
+    <details class="menu">
+      <summary class="pill">
+        <span>Fun</span><span class="pill__caret" aria-hidden="true">▾</span>
+      </summary>
+      <ul class="menu__list">
+        <li><span class="menu__muted">Coming soon</span></li>
+      </ul>
+    </details>
+
+    <details class="menu">
+      <summary class="pill">
+        <span>About</span><span class="pill__caret" aria-hidden="true">▾</span>
+      </summary>
+      <ul class="menu__list">
+        <li><a href="#" data-link="email">Email</a></li>
+        <li><a href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="#" data-link="resume" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+    </details>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="lead">
+        <strong>Jenna Choi</strong> is a designer creating experiences
+        that help people stay in the
+        <span class="flow">
+          <span class="flow__chip">flow</span>
+          <span class="flow__dot" aria-hidden="true"></span>
+          <span class="flow__line" aria-hidden="true"></span>
+          <span class="flow__box" aria-hidden="true"></span>
+        </span>
+      </p>
+    </section>
+
+    <section id="work" class="work" aria-label="Work">
+      <div class="filters" role="toolbar" aria-label="Filter projects">
+        <button class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="uiux" aria-pressed="false">UI/UX</button>
+        <button class="chip" data-filter="motion" aria-pressed="false">motion</button>
+        <button class="chip" data-filter="identity" aria-pressed="false">identity</button>
+      </div>
+
+      <ul class="grid">
+        <li class="card" data-tags="identity motion">
+          <div class="card__media"><img src="/assets/work/hermes.png" alt="Hermès sponsored project packaging" loading="lazy" /></div>
+          <p class="card__title">Hermes Sponsored Project</p>
+          <p class="card__tags">Branding · 2D/3D Motion</p>
+        </li>
+        <li class="card" data-tags="motion identity">
+          <div class="card__media"><img src="/assets/work/wired.png" alt="WIRED logo reveal" loading="lazy" /></div>
+          <p class="card__title">WIRED logo reveal</p>
+          <p class="card__tags">3D Motion</p>
+        </li>
+        <li class="card" data-tags="uiux motion">
+          <div class="card__media"><img src="/assets/work/sweetie.png" alt="Sweetie AI salad app on a phone" loading="lazy" /></div>
+          <p class="card__title">Customize your salad, Sweetie AI</p>
+          <p class="card__tags">Micro-interaction · UI · Motion · AI</p>
+        </li>
+        <li class="card" data-tags="identity uiux">
+          <div class="card__media"><img src="/assets/work/memrise.png" alt="Memrise logo" loading="lazy" /></div>
+          <p class="card__title">More than hello, Memrise</p>
+          <p class="card__tags">Branding · UI</p>
+        </li>
+        <li class="card" data-tags="uiux">
+          <div class="card__media card__media--cueue"></div>
+          <p class="card__title">Cueue</p>
+          <p class="card__tags">Product for freelancers</p>
+        </li>
+        <li class="card" data-tags="uiux">
+          <div class="card__media card__media--placeholder"></div>
+          <p class="card__title">Design OS</p>
+          <p class="card__tags">product for designers’ workflow</p>
+        </li>
+        <li class="card" data-tags="motion">
+          <div class="card__media"><img src="/assets/work/camper.png" alt="Camper Twin campaign illustration" loading="lazy" /></div>
+          <p class="card__title">Camper Twin Campaign</p>
+          <p class="card__tags">2D Motion</p>
+        </li>
+        <li class="card" data-tags="motion">
+          <a class="card__link" href="https://www.filmograph.tv/project/bee-hive" target="_blank" rel="noopener">
+            <div class="card__media"><img src="/assets/work/filmograph.png" alt="Filmograph bee hive animation" loading="lazy" /></div>
+            <p class="card__title">Filmograph LA Internship</p>
+            <p class="card__tags">3D Motion</p>
+          </a>
+        </li>
+        <li class="card" data-tags="motion">
+          <div class="card__media"><img src="/assets/work/apple.png" alt="Apple logo" loading="lazy" /></div>
+          <p class="card__title">Apple Internship</p>
+          <p class="card__tags">Coming soon</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="pill pill--small pill--center">© 2026 Jenna Choi. All rights reserved.</p>
+    <a class="pill pill--small" href="#" data-link="email"><span>Email</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
+    <a class="pill pill--small" href="#" data-link="linkedin" target="_blank" rel="noopener"><span>LinkedIn</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
+    <a class="pill pill--small" href="#" data-link="resume" target="_blank" rel="noopener"><span>Resume</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

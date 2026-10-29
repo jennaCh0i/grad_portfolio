@@ -1,0 +1,31 @@
+name: Fetch Figma assets
+on:
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: "Space-separated name=url pairs"
+        required: true
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+        run: |
+          mkdir -p assets/work
+          for pair in $MANIFEST; do
+            name="${pair%%=*}"; url="${pair#*=}"
+            curl -fsSL -o "assets/work/$name" "$url"
+            echo "$name $(wc -c < assets/work/$name) bytes"
+          done
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898273+github-actions[bot]@users.noreply.github.com"
+          git add assets/work
+          git commit -m "Add project thumbnails from Figma" || echo "nothing to commit"
+          git push
