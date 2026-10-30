@@ -7,7 +7,7 @@
      Footer   1–9 | 10–15 | 16–21 | 22–24
    ------------------------------------------------------------------ */
 :root {
-  --bg-page: #f4f4f4;
+  --bg-page: #f7f7f7;
   --text-primary: #333333;
   --text-ink: #333333;
   --text-tertiary: #a8a8a8;
@@ -114,7 +114,7 @@ a.pill:hover { background: var(--hover); }
   align-items: center;
   padding-top: 14px;
   padding-bottom: 10px;
-  background: linear-gradient(var(--bg-page) 75%, rgba(244, 244, 244, 0));
+  background: linear-gradient(var(--bg-page) 75%, rgba(247, 247, 247, 0));
 }
 .tabs { grid-column: 1 / 10; display: flex; gap: 8px; }
 .segmented { grid-column: 16 / 25; justify-self: end; }
