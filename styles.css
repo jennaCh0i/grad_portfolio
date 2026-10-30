@@ -1,4 +1,7 @@
-/* Tokens — from the Portfolio v4 Figma (IXD final page) */
+/* ------------------------------------------------------------------
+   Tokens — Portfolio v4 design system
+   One grid for every section: 12 columns × 65, 20 gutters = 1000 main
+   ------------------------------------------------------------------ */
 :root {
   --bg-page: #fbfbfb;
   --text-primary: #0a1224;
@@ -6,18 +9,30 @@
   --text-tertiary: #a8a8a8;
   --text-muted: #9a9a9a;
   --border-subtle: #e8e8e8;
+  --hover: #dedede;
   --accent: #51b7df;
+  --accent-hover: #46a9d0;
   --cueue: #579bfe;
   --placeholder: #e3e3e3;
 
-  --radius-pill: 17px;
-  --radius-chip: 10px;
-  --radius-card: 30px;
+  /* Grid */
+  --main: 1000px;
+  --gutter: 20px;
+  --margin: 24px;
 
-  --page-x: 25px;
-  --grid-max: 1229px;
-  --grid-gap-x: 18px;
-  --grid-gap-y: 43.2px;
+  /* Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+
+  /* Shape */
+  --pill-h: 28px;
+  --radius-pill: 999px;
+  --radius-chip: 8px;
+  --radius-card: 24px;
 
   --font: "Fustat", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -43,18 +58,35 @@ p { margin: 0; }
 ul { list-style: none; margin: 0; padding: 0; }
 button { font: inherit; color: inherit; border: 0; cursor: pointer; }
 
-/* Pills (header + footer) */
+/* ------------------------------------------------------------------
+   Layout primitives — every section uses these
+   ------------------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: calc(var(--main) + 2 * var(--margin));
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+.grid12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+
+/* ------------------------------------------------------------------
+   Pills (header + footer)
+   ------------------------------------------------------------------ */
 .pill {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  height: 35px;
-  padding: 0 20px;
+  height: var(--pill-h);
+  padding: 0 16px;
   border-radius: var(--radius-pill);
   background: var(--border-subtle);
   color: var(--text-ink);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;
@@ -62,27 +94,32 @@ button { font: inherit; color: inherit; border: 0; cursor: pointer; }
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .pill--active { background: var(--accent); color: #fff; }
-.pill--small { height: 34px; font-size: 12px; }
+.pill--small { font-size: 12px; }
 .pill--center { justify-content: center; }
 .pill__sub { text-align: right; }
-.pill__caret { color: var(--text-muted); font-size: 10px; font-weight: 400; }
+.pill__caret { color: var(--text-muted); font-size: 9px; font-weight: 400; }
 .pill--active .pill__caret { color: rgba(255, 255, 255, 0.75); }
 .pill__arrow { color: var(--text-muted); font-size: 11px; font-weight: 400; }
 a.pill:hover,
-summary.pill:hover { background: #dedede; }
+summary.pill:hover { background: var(--hover); }
 a.pill--identity:hover { background: var(--border-subtle); }
-summary.pill--active:hover { background: #46a9d0; }
+summary.pill--active:hover { background: var(--accent-hover); }
 
-/* Header */
+/* ------------------------------------------------------------------
+   Header — 4 / 4 / 2 / 2 columns
+   ------------------------------------------------------------------ */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 10;
-  display: grid;
-  grid-template-columns: 512fr 590fr 166fr 154fr;
-  gap: 11px;
-  padding: 20px var(--page-x) 0;
+  padding-top: 20px;
+  padding-bottom: 8px;
+  background: linear-gradient(var(--bg-page) 70%, rgba(251, 251, 251, 0));
 }
+.site-header > :nth-child(1) { grid-column: span 4; }
+.site-header > :nth-child(2) { grid-column: span 4; }
+.site-header > :nth-child(3) { grid-column: span 2; }
+.site-header > :nth-child(4) { grid-column: span 2; }
 
 .menu { position: relative; }
 .menu summary { list-style: none; cursor: pointer; user-select: none; }
@@ -94,124 +131,115 @@ summary.pill--active:hover { background: #46a9d0; }
   left: 0;
   right: 0;
   padding: 6px;
-  border-radius: var(--radius-pill);
+  border-radius: 14px;
   background: #fff;
   box-shadow: 0 8px 28px rgba(10, 18, 36, 0.08), 0 0 0 1px var(--border-subtle);
 }
 .menu__list a,
 .menu__muted {
   display: block;
-  padding: 9px 14px;
-  border-radius: 11px;
-  font-size: 15px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 13px;
   font-weight: 500;
 }
 .menu__list a:hover { background: var(--bg-page); }
 .menu__muted { color: var(--text-tertiary); font-weight: 400; }
 
-/* Hero */
+/* ------------------------------------------------------------------
+   Hero — centered on the grid's center line
+   ------------------------------------------------------------------ */
 .hero {
   display: flex;
   justify-content: center;
-  padding: 170px var(--page-x) 0;
+  padding-top: 128px;
 }
 .lead {
   position: relative;
-  width: 519px;
-  max-width: 100%;
-  font-size: 25px;
-  line-height: 31px;
-  letter-spacing: -0.5px;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: -0.4px;
   text-align: center;
 }
 .lead strong { font-weight: 600; }
 .lead__line { display: block; white-space: nowrap; }
-/* Whole page rendered at 80% on tablet/desktop */
-@media (min-width: 721px) {
-  body { zoom: 0.8; }
-}
 
-.flow { position: relative; display: inline-block; vertical-align: top; height: 31px; }
+.flow { position: relative; display: inline-block; vertical-align: top; height: 25px; }
 .flow__chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 95px;
-  height: 31px;
+  width: 76px;
+  height: 25px;
   border-radius: var(--radius-chip);
   background: var(--border-subtle);
   color: var(--text-ink);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
   vertical-align: top;
 }
 .flow__dot {
   position: absolute;
-  left: 89px;
+  left: 72px;
   top: 50%;
-  width: 10px;
-  height: 10px;
-  margin-top: -2px;
+  width: 8px;
+  height: 8px;
+  transform: translateY(-50%);
   border-radius: 50%;
   background: var(--accent);
 }
 .flow__line {
   position: absolute;
-  left: 95px;
+  left: 76px;
   top: 50%;
-  width: 70px;
+  width: 56px;
   height: 2px;
-  margin-top: -1px;
+  transform: translateY(-50%);
   background: var(--accent);
 }
 .flow__box {
   position: absolute;
-  left: 165px;
-  top: 50%;
-  width: 95px;
-  height: 101px;
-  margin-top: -51px;
+  left: 132px;
+  top: -28px;
+  width: 76px;
+  height: 81px;
   border-radius: var(--radius-chip);
   background: var(--border-subtle);
 }
 
-/* Work */
-.work {
-  max-width: calc(var(--grid-max) + 2 * var(--page-x));
-  margin: 0 auto;
-  padding: 138px var(--page-x) 0;
-}
-.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+/* ------------------------------------------------------------------
+   Work — filters on column 1, cards span 4 columns (3-up)
+   ------------------------------------------------------------------ */
+.work { padding-top: var(--space-2xl); }
+
+.filters { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
 .chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 80px;
-  height: 35px;
+  min-width: 64px;
+  height: var(--pill-h);
   padding: 0 14px;
   border-radius: var(--radius-pill);
   background: var(--border-subtle);
   color: var(--text-ink);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 500;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-.chip:hover { background: #dedede; }
+.chip:hover { background: var(--hover); }
 .chip.is-active { background: var(--accent); color: #fff; }
 .chip:focus-visible,
 .pill:focus-visible,
 .card__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: var(--grid-gap-x);
-  row-gap: var(--grid-gap-y);
-  padding-top: 31.6px;
+  row-gap: var(--space-lg);
+  padding-top: var(--space-md);
 }
+.card { grid-column: span 4; animation: card-in 0.35s ease both; }
 .card[hidden] { display: none; }
-.card { animation: card-in 0.35s ease both; }
 @keyframes card-in { from { opacity: 0; transform: translateY(6px); } }
 
 .card__link { display: block; border-radius: var(--radius-card); }
@@ -232,50 +260,54 @@ summary.pill--active:hover { background: #46a9d0; }
 .card__media--cueue { background: var(--cueue); }
 .card__media--placeholder { background: var(--placeholder); }
 
+/* UI/Label + UI/Caption */
 .card__title {
-  margin-top: 14.4px;
-  font-size: 15px;
-  line-height: 16.2px;
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 18px;
   color: var(--text-primary);
 }
 .card__tags {
-  margin-top: 1.8px;
-  font-size: 15px;
-  line-height: 14.4px;
+  font-size: 12px;
+  line-height: 16px;
   color: var(--text-tertiary);
 }
 
-/* Footer */
+/* ------------------------------------------------------------------
+   Footer — 6 / 2 / 2 / 2 columns
+   ------------------------------------------------------------------ */
 .site-footer {
-  display: grid;
-  grid-template-columns: 761.5fr 247fr 247fr 247fr;
-  gap: 10px;
-  padding: 120px var(--page-x) 20px;
+  padding-top: var(--space-2xl);
+  padding-bottom: 20px;
 }
-a.pill--small:hover { background: #dedede; }
+.site-footer > :nth-child(1) { grid-column: span 6; }
+.site-footer > :nth-child(n + 2) { grid-column: span 2; }
 
-/* Tablet */
-@media (max-width: 1100px) {
-  .site-header { grid-template-columns: 2fr 2fr 1fr 1fr; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .site-footer { grid-template-columns: 2fr 1fr 1fr 1fr; }
+/* ------------------------------------------------------------------
+   Tablet — cards 2-up (span 6)
+   ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .card { grid-column: span 6; }
 }
 
-/* Mobile */
+/* ------------------------------------------------------------------
+   Mobile — 12 columns kept, spans change
+   ------------------------------------------------------------------ */
 @media (max-width: 720px) {
-  :root { --page-x: 16px; }
-  .site-header { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding-top: 12px; }
-  .pill--identity { grid-column: 1 / -1; }
-  .pill { font-size: 15px; padding: 0 16px; }
-  .hero { padding-top: 96px; }
-  .lead { font-size: 21px; line-height: 28px; }
+  :root { --margin: 16px; --gutter: 12px; }
+  .site-header { row-gap: var(--space-xs); padding-top: 12px; }
+  .site-header > :nth-child(1) { grid-column: span 12; }
+  .site-header > :nth-child(n + 2) { grid-column: span 4; }
+  .pill { padding: 0 12px; }
+  .hero { padding-top: 80px; }
+  .lead { font-size: 18px; line-height: 24px; }
   .lead__line { display: inline; white-space: normal; }
   .flow__dot, .flow__line, .flow__box { display: none; }
-  .work { padding-top: 72px; }
-  .grid { grid-template-columns: 1fr; row-gap: 32px; }
-  .card__media { border-radius: 24px; }
-  .site-footer { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding-top: 56px; }
-  .site-footer .pill--center { grid-column: 1 / -1; }
+  .work { padding-top: var(--space-xl); }
+  .card { grid-column: span 12; }
+  .site-footer { row-gap: var(--space-xs); padding-top: var(--space-xl); }
+  .site-footer > :nth-child(1) { grid-column: span 12; }
+  .site-footer > :nth-child(n + 2) { grid-column: span 4; }
 }
 
 @media (prefers-reduced-motion: reduce) {
