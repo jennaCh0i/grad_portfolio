@@ -152,7 +152,7 @@ a.pill:hover { background: var(--hover); }
 /* ------------------------------------------------------------------
    Hero — centered on the grid's center line
    ------------------------------------------------------------------ */
-.hero { padding-top: 62px; }
+.hero { padding-top: 72px; }
 .hero > .lead { justify-self: center; }
 .lead {
   position: relative;
