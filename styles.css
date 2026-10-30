@@ -1,6 +1,10 @@
 /* ------------------------------------------------------------------
    Tokens — Portfolio v4 design system
-   One grid for every section: 12 columns × 65, 20 gutters = 1000 main
+   One full-screen grid for every section: 24 columns (= 12 columns split
+   in half), 24 margins, 20 gutters.
+     Header   1–9 | 10–18 | 19–21 | 22–24
+     Content  4–21 (cards 4–9 | 10–15 | 16–21)
+     Footer   1–9 | 10–15 | 16–21 | 22–24
    ------------------------------------------------------------------ */
 :root {
   --bg-page: #fbfbfb;
@@ -16,7 +20,6 @@
   --placeholder: #e3e3e3;
 
   /* Grid */
-  --main: 1000px;
   --gutter: 20px;
   --margin: 24px;
 
@@ -61,17 +64,15 @@ button { font: inherit; color: inherit; border: 0; cursor: pointer; }
 /* ------------------------------------------------------------------
    Layout primitives — every section uses these
    ------------------------------------------------------------------ */
-.container {
-  width: 100%;
-  max-width: calc(var(--main) + 2 * var(--margin));
-  margin-inline: auto;
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(24, minmax(0, 1fr));
+  column-gap: var(--gutter);
   padding-inline: var(--margin);
 }
-.grid12 {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-}
+/* Content band: columns 4–21 */
+.hero > *,
+.work > * { grid-column: 4 / 22; }
 
 /* ------------------------------------------------------------------
    Pills (header + footer)
@@ -106,7 +107,7 @@ a.pill--identity:hover { background: var(--border-subtle); }
 summary.pill--active:hover { background: var(--accent-hover); }
 
 /* ------------------------------------------------------------------
-   Header — 4 / 4 / 2 / 2 columns
+   Header — 1–9 / 10–18 / 19–21 / 22–24
    ------------------------------------------------------------------ */
 .site-header {
   position: sticky;
@@ -116,10 +117,10 @@ summary.pill--active:hover { background: var(--accent-hover); }
   padding-bottom: 8px;
   background: linear-gradient(var(--bg-page) 70%, rgba(251, 251, 251, 0));
 }
-.site-header > :nth-child(1) { grid-column: span 4; }
-.site-header > :nth-child(2) { grid-column: span 4; }
-.site-header > :nth-child(3) { grid-column: span 2; }
-.site-header > :nth-child(4) { grid-column: span 2; }
+.site-header > :nth-child(1) { grid-column: 1 / 10; }
+.site-header > :nth-child(2) { grid-column: 10 / 19; }
+.site-header > :nth-child(3) { grid-column: 19 / 22; }
+.site-header > :nth-child(4) { grid-column: 22 / 25; }
 
 .menu { position: relative; }
 .menu summary { list-style: none; cursor: pointer; user-select: none; }
@@ -149,11 +150,8 @@ summary.pill--active:hover { background: var(--accent-hover); }
 /* ------------------------------------------------------------------
    Hero — centered on the grid's center line
    ------------------------------------------------------------------ */
-.hero {
-  display: flex;
-  justify-content: center;
-  padding-top: 128px;
-}
+.hero { padding-top: 128px; }
+.hero > .lead { justify-self: center; }
 .lead {
   position: relative;
   font-size: 20px;
@@ -209,7 +207,7 @@ summary.pill--active:hover { background: var(--accent-hover); }
 }
 
 /* ------------------------------------------------------------------
-   Work — filters on column 1, cards span 4 columns (3-up)
+   Work — filters start at column 4; 3 cards × 6 columns
    ------------------------------------------------------------------ */
 .work { padding-top: var(--space-2xl); }
 
@@ -235,10 +233,13 @@ summary.pill--active:hover { background: var(--accent-hover); }
 .card__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gutter);
   row-gap: var(--space-lg);
   padding-top: var(--space-md);
 }
-.card { grid-column: span 4; animation: card-in 0.35s ease both; }
+.card { animation: card-in 0.35s ease both; }
 .card[hidden] { display: none; }
 @keyframes card-in { from { opacity: 0; transform: translateY(6px); } }
 
@@ -274,20 +275,34 @@ summary.pill--active:hover { background: var(--accent-hover); }
 }
 
 /* ------------------------------------------------------------------
-   Footer — 6 / 2 / 2 / 2 columns
+   Footer — 1–9 / 10–15 / 16–21 / 22–24
    ------------------------------------------------------------------ */
 .site-footer {
   padding-top: var(--space-2xl);
   padding-bottom: 20px;
 }
-.site-footer > :nth-child(1) { grid-column: span 6; }
-.site-footer > :nth-child(n + 2) { grid-column: span 2; }
+.site-footer > :nth-child(1) { grid-column: 1 / 10; }
+.site-footer > :nth-child(2) { grid-column: 10 / 16; }
+.site-footer > :nth-child(3) { grid-column: 16 / 22; }
+.site-footer > :nth-child(4) { grid-column: 22 / 25; }
 
 /* ------------------------------------------------------------------
-   Tablet — cards 2-up (span 6)
+   Tablet — content uses the full width, cards 2-up
    ------------------------------------------------------------------ */
-@media (max-width: 900px) {
-  .card { grid-column: span 6; }
+@media (max-width: 1000px) {
+  :root { --gutter: 12px; --margin: 20px; }
+  .hero > *,
+  .work > * { grid-column: 1 / -1; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* header/footer edges follow the 2-up cards (1–12 | 13–24) */
+  .site-header > :nth-child(1),
+  .site-footer > :nth-child(1) { grid-column: 1 / 13; }
+  .site-header > :nth-child(2) { grid-column: 13 / 19; }
+  .site-header > :nth-child(3) { grid-column: 19 / 22; }
+  .site-header > :nth-child(4) { grid-column: 22 / 25; }
+  .site-footer > :nth-child(2) { grid-column: 13 / 17; }
+  .site-footer > :nth-child(3) { grid-column: 17 / 21; }
+  .site-footer > :nth-child(4) { grid-column: 21 / 25; }
 }
 
 /* ------------------------------------------------------------------
@@ -296,18 +311,22 @@ summary.pill--active:hover { background: var(--accent-hover); }
 @media (max-width: 720px) {
   :root { --margin: 16px; --gutter: 12px; }
   .site-header { row-gap: var(--space-xs); padding-top: 12px; }
-  .site-header > :nth-child(1) { grid-column: span 12; }
-  .site-header > :nth-child(n + 2) { grid-column: span 4; }
+  .site-header > :nth-child(1) { grid-column: 1 / -1; }
+  .site-header > :nth-child(2) { grid-column: 1 / 9; }
+  .site-header > :nth-child(3) { grid-column: 9 / 17; }
+  .site-header > :nth-child(4) { grid-column: 17 / 25; }
   .pill { padding: 0 12px; }
   .hero { padding-top: 80px; }
   .lead { font-size: 18px; line-height: 24px; }
   .lead__line { display: inline; white-space: normal; }
   .flow__dot, .flow__line, .flow__box { display: none; }
   .work { padding-top: var(--space-xl); }
-  .card { grid-column: span 12; }
+  .grid { grid-template-columns: 1fr; }
   .site-footer { row-gap: var(--space-xs); padding-top: var(--space-xl); }
-  .site-footer > :nth-child(1) { grid-column: span 12; }
-  .site-footer > :nth-child(n + 2) { grid-column: span 4; }
+  .site-footer > :nth-child(1) { grid-column: 1 / -1; }
+  .site-footer > :nth-child(2) { grid-column: 1 / 9; }
+  .site-footer > :nth-child(3) { grid-column: 9 / 17; }
+  .site-footer > :nth-child(4) { grid-column: 17 / 25; }
 }
 
 @media (prefers-reduced-motion: reduce) {
