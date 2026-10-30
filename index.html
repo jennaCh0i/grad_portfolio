@@ -15,43 +15,30 @@
 </head>
 <body>
   <header class="site-header page-grid">
-    <a class="pill pill--identity" href="/">
-      <span>Jenna Choi</span>
-      <span class="pill__sub">Interaction Design + Motion</span>
-    </a>
+    <nav class="tabs" aria-label="Main">
+      <a class="tab is-current" href="#work" aria-current="page">Work</a>
+      <details class="menu">
+        <summary class="tab">Fun</summary>
+        <ul class="menu__list">
+          <li><span class="menu__muted">Coming soon</span></li>
+        </ul>
+      </details>
+      <details class="menu">
+        <summary class="tab">About</summary>
+        <ul class="menu__list">
+          <li><a href="#" data-link="email">Email</a></li>
+          <li><a href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="#" data-link="resume" target="_blank" rel="noopener">Resume</a></li>
+        </ul>
+      </details>
+    </nav>
 
-    <details class="menu menu--work">
-      <summary class="pill">
-        <span>Work</span><span class="pill__caret" aria-hidden="true">▾</span>
-      </summary>
-      <ul class="menu__list">
-        <li><a href="#work" data-filter-link="all">All</a></li>
-        <li><a href="#work" data-filter-link="uiux">UI/UX</a></li>
-        <li><a href="#work" data-filter-link="motion">Motion</a></li>
-        <li><a href="#work" data-filter-link="identity">Identity</a></li>
-        <li><a href="#work" data-filter-link="internship">Internship</a></li>
-      </ul>
-    </details>
+    <a class="wordmark" href="/">JENNA CHOI</a>
 
-    <details class="menu">
-      <summary class="pill">
-        <span>Fun</span><span class="pill__caret" aria-hidden="true">▾</span>
-      </summary>
-      <ul class="menu__list">
-        <li><span class="menu__muted">Coming soon</span></li>
-      </ul>
-    </details>
-
-    <details class="menu">
-      <summary class="pill">
-        <span>About</span><span class="pill__caret" aria-hidden="true">▾</span>
-      </summary>
-      <ul class="menu__list">
-        <li><a href="#" data-link="email">Email</a></li>
-        <li><a href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="#" data-link="resume" target="_blank" rel="noopener">Resume</a></li>
-      </ul>
-    </details>
+    <div class="segmented" role="group" aria-label="Project view">
+      <button class="segmented__btn is-active" data-view="grid" aria-pressed="true">Grid</button>
+      <button class="segmented__btn" data-view="list" aria-pressed="false">List</button>
+    </div>
   </header>
 
   <main>

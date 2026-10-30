@@ -50,3 +50,18 @@ document.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") menus.forEach((m) => m.removeAttribute("open"));
 });
+
+// Grid / List view toggle
+const grid = document.querySelector(".grid");
+const viewBtns = [...document.querySelectorAll("[data-view]")];
+function setView(view) {
+  grid.classList.toggle("is-list", view === "list");
+  viewBtns.forEach((b) => {
+    const on = b.dataset.view === view;
+    b.classList.toggle("is-active", on);
+    b.setAttribute("aria-pressed", String(on));
+  });
+  try { localStorage.setItem("view", view); } catch (e) {}
+}
+viewBtns.forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
+try { if (localStorage.getItem("view") === "list") setView("list"); } catch (e) {}
