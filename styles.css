@@ -14,6 +14,7 @@
   --text-muted: #9a9a9a;
   --border-subtle: #e8e8e8;
   --hover: #dedede;
+  --rule: #dcdcdc;
   --accent: #51b7df;
   --accent-hover: #46a9d0;
   --cueue: #579bfe;
@@ -95,16 +96,17 @@ button { font: inherit; color: inherit; border: 0; cursor: pointer; }
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .pill--active { background: var(--accent); color: #fff; }
+.site-header .pill:hover,
+.site-header .menu[open] > .pill { background: var(--accent); color: #fff; }
+.site-header .pill:hover .pill__caret,
+.site-header .menu[open] > .pill .pill__caret { color: rgba(255, 255, 255, 0.75); }
 .pill--small { font-size: 12px; }
 .pill--center { justify-content: center; }
 .pill__sub { text-align: right; }
 .pill__caret { color: var(--text-muted); font-size: 9px; font-weight: 400; }
 .pill--active .pill__caret { color: rgba(255, 255, 255, 0.75); }
 .pill__arrow { color: var(--text-muted); font-size: 11px; font-weight: 400; }
-a.pill:hover,
-summary.pill:hover { background: var(--hover); }
-a.pill--identity:hover { background: var(--border-subtle); }
-summary.pill--active:hover { background: var(--accent-hover); }
+a.pill:hover { background: var(--hover); }
 
 /* ------------------------------------------------------------------
    Header — 1–9 / 10–18 / 19–21 / 22–24
@@ -211,7 +213,13 @@ summary.pill--active:hover { background: var(--accent-hover); }
    ------------------------------------------------------------------ */
 .work { padding-top: var(--space-2xl); }
 
-.filters { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
 .chip {
   display: inline-flex;
   align-items: center;
@@ -220,13 +228,13 @@ summary.pill--active:hover { background: var(--accent-hover); }
   height: var(--pill-h);
   padding: 0 14px;
   border-radius: var(--radius-pill);
-  background: var(--border-subtle);
+  background: transparent;
   color: var(--text-ink);
   font-size: 14px;
   font-weight: 500;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-.chip:hover { background: var(--hover); }
+.chip:hover { background: var(--border-subtle); }
 .chip.is-active { background: var(--accent); color: #fff; }
 .chip:focus-visible,
 .pill:focus-visible,
