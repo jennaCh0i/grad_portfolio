@@ -268,7 +268,7 @@ a.pill:hover { background: var(--hover); }
   padding: 0 14px;
   border-radius: var(--radius-pill);
   background: transparent;
-  color: var(--text-ink);
+  color: #5c5c5c; /* filter labels: 20% lighter than body type */
   font-size: 14px;
   font-weight: 500;
   transition: background-color 0.2s ease, color 0.2s ease;
