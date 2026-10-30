@@ -17,21 +17,8 @@
   <div class="layout page-grid">
     <aside class="sidebar">
       <nav class="tabs" aria-label="Main">
-        <a class="tab is-current" href="#work" aria-current="page">Work</a>
-        <details class="menu">
-          <summary class="tab">Fun</summary>
-          <ul class="menu__list">
-            <li><span class="menu__muted">Coming soon</span></li>
-          </ul>
-        </details>
-        <details class="menu">
-          <summary class="tab">About</summary>
-          <ul class="menu__list">
-            <li><a href="#" data-link="email">Email</a></li>
-            <li><a href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="#" data-link="resume" target="_blank" rel="noopener">Resume</a></li>
-          </ul>
-        </details>
+        <a class="tab is-current" href="/" aria-current="page">Work</a>
+        <a class="tab" href="/about">About</a>
       </nav>
 
       <p class="lead">
@@ -44,15 +31,19 @@
         </span>
       </p>
 
-      <div class="filters" role="toolbar" aria-label="Filter projects">
-        <button class="chip" data-filter="uiux" aria-pressed="false">UI/UX</button>
-        <button class="chip" data-filter="motion" aria-pressed="false">Motion</button>
-        <button class="chip" data-filter="identity" aria-pressed="false">Identity</button>
-        <button class="chip" data-filter="internship" aria-pressed="false">Internship</button>
+      <div class="control">
+        <p class="control__label">Filter</p>
+        <div class="filters" role="toolbar" aria-label="Filter projects">
+          <button class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" data-filter="uiux" aria-pressed="false">UI/UX</button>
+          <button class="chip" data-filter="motion" aria-pressed="false">Motion</button>
+          <button class="chip" data-filter="identity" aria-pressed="false">Identity</button>
+          <button class="chip" data-filter="internship" aria-pressed="false">Internship</button>
+        </div>
       </div>
 
-      <div class="sidebar__bottom">
-        <button class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+      <div class="control sidebar__bottom">
+        <p class="control__label">View</p>
         <div class="segmented" role="group" aria-label="Project view">
           <button class="segmented__btn is-active" data-view="grid" aria-pressed="true">Grid</button>
           <button class="segmented__btn" data-view="list" aria-pressed="false">List</button>

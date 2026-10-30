@@ -105,12 +105,13 @@ button { font: inherit; color: inherit; border: 0; cursor: pointer; }
   padding: 20px 0;
   z-index: 5;
 }
-.sidebar__bottom {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+.sidebar__bottom { margin-top: auto; }
+
+.control { display: flex; flex-direction: column; gap: 10px; }
+.control__label {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-tertiary);
 }
 
 .main {
@@ -197,6 +198,7 @@ a.pill:hover { background: var(--hover); }
 
 
 .segmented {
+  align-self: flex-start;
   display: inline-flex;
   padding: 2px;
   border-radius: var(--radius-chip);
@@ -363,6 +365,13 @@ a.pill:hover { background: var(--hover); }
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .chip.is-active { background: var(--accent); color: #fff; }
+.chip__count {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.55;
+  font-variant-numeric: tabular-nums;
+}
 .chip:hover,
 .chip.is-active:hover { background-color: transparent; color: var(--text-ink); }
 .chip:focus-visible,
@@ -410,7 +419,7 @@ a.pill:hover { background: var(--hover); }
 .card__media--placeholder { background: var(--placeholder); }
 
 .card__title {
-  flex: 1 1 auto;
+  flex: 0 0 100%;
   font-size: 15px;
   line-height: 20px;
   font-weight: 500;
@@ -439,6 +448,31 @@ a.pill:hover { background: var(--hover); }
 .is-list .card__tags { margin: 0; text-align: left; }
 .is-list .card:hover .card__media img { transform: none; }
 .is-list .card:hover .card__title { color: var(--accent); }
+
+/* ------------------------------------------------------------------
+   About page — same 3 columns as the cards
+   ------------------------------------------------------------------ */
+.about { display: flex; flex-direction: column; gap: 48px; padding-top: 24px; }
+.about__label {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+.about__list li {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  padding: 10px 0;
+  border-top: 1px solid var(--rule);
+  font-size: 15px;
+  line-height: 20px;
+}
+.about__list li:last-child { border-bottom: 1px solid var(--rule); }
+.about__list li > :first-child { font-weight: 500; }
+.about__list li > :nth-child(2) { color: var(--text-ink); }
+.about__list li > :last-child { color: var(--text-tertiary); }
 
 /* ------------------------------------------------------------------
    Footer — sits under the cards: card 1 | card 2 | card 3 (split)
@@ -478,6 +512,7 @@ a.pill:hover { background: var(--hover); }
   .flow__dot, .flow__line, .flow__box { display: none; }
   .chip { height: 32px; font-size: 15px; }
   .grid { grid-template-columns: 1fr; row-gap: 32px; }
+  .about__list li { grid-template-columns: 1fr; row-gap: 2px; }
   .site-footer { grid-template-columns: repeat(3, minmax(0, 1fr)); padding-top: 64px; }
   .site-footer > :nth-child(1) { grid-column: 1 / -1; }
   .site-footer > :nth-child(2) { grid-column: auto; }

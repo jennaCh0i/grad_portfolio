@@ -11,9 +11,18 @@ document.querySelectorAll("[data-link]").forEach((el) => {
   el.href = el.dataset.link === "email" ? `mailto:${value}` : value;
 });
 
-// Project filters
+// Project filters (with counts)
 const chips = [...document.querySelectorAll(".chip[data-filter]")];
 const cards = [...document.querySelectorAll(".card[data-tags]")];
+
+chips.forEach((chip) => {
+  const f = chip.dataset.filter;
+  const n = f === "all" ? cards.length : cards.filter((c) => c.dataset.tags.split(" ").includes(f)).length;
+  const count = document.createElement("span");
+  count.className = "chip__count";
+  count.textContent = n;
+  chip.append(count);
+});
 
 function applyFilter(filter) {
   chips.forEach((chip) => {
@@ -28,14 +37,6 @@ function applyFilter(filter) {
 }
 
 chips.forEach((chip) => chip.addEventListener("click", () => applyFilter(chip.dataset.filter)));
-
-// "Work ▾" menu items jump to the grid and apply a filter
-document.querySelectorAll("[data-filter-link]").forEach((link) => {
-  link.addEventListener("click", () => {
-    applyFilter(link.dataset.filterLink);
-    link.closest("details")?.removeAttribute("open");
-  });
-});
 
 // Only one header menu open at a time; close on outside click / Escape
 const menus = [...document.querySelectorAll("details.menu")];
@@ -55,6 +56,7 @@ document.addEventListener("keydown", (e) => {
 const grid = document.querySelector(".grid");
 const viewBtns = [...document.querySelectorAll("[data-view]")];
 function setView(view) {
+  if (!grid) return;
   grid.classList.toggle("is-list", view === "list");
   viewBtns.forEach((b) => {
     const on = b.dataset.view === view;
