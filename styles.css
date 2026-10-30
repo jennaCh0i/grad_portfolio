@@ -152,7 +152,7 @@ a.pill:hover { background: var(--hover); }
 /* ------------------------------------------------------------------
    Hero — centered on the grid's center line
    ------------------------------------------------------------------ */
-.hero { padding-top: 128px; }
+.hero { padding-top: 48px; }
 .hero > .lead { justify-self: center; }
 .lead {
   position: relative;
@@ -250,7 +250,7 @@ a.pill:hover { background: var(--hover); }
 /* ------------------------------------------------------------------
    Work — filters start at column 4; 3 cards × 6 columns
    ------------------------------------------------------------------ */
-.work { padding-top: var(--space-2xl); }
+.work { padding-top: 40px; }
 
 .filters {
   display: flex;
