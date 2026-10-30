@@ -81,15 +81,17 @@ button { font: inherit; color: inherit; border: 0; cursor: pointer; }
 .sidebar {
   position: fixed;
   top: 0;
-  left: var(--margin);
-  width: calc((100% - 2 * var(--margin) - 23 * var(--gutter)) / 24 * 6 + 5 * var(--gutter));
+  /* 20px of breathing room on each side so hover glows aren't clipped */
+  left: calc(var(--margin) - 20px);
+  width: calc((100% - 2 * var(--margin) - 23 * var(--gutter)) / 24 * 6 + 5 * var(--gutter) + 40px);
+  padding-inline: 20px;
   height: 100vh;
   overflow-y: auto;
   overscroll-behavior: contain;
   display: flex;
   flex-direction: column;
   gap: 28px;
-  padding: 20px 0;
+  padding-block: 20px;
   z-index: 5;
 }
 .sidebar__bottom { margin-top: auto; }
@@ -202,8 +204,9 @@ a.pill:hover { background-color: transparent; }
   font-weight: 500;
   transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
-.segmented__btn:hover { background-color: transparent; box-shadow: none; color: var(--text-ink); }
 .segmented__btn.is-active { background: var(--accent); color: #fff; }
+.segmented__btn:hover,
+.segmented__btn.is-active:hover { background-color: transparent; box-shadow: none; color: var(--text-ink); }
 .segmented__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ------------------------------------------------------------------
@@ -401,6 +404,7 @@ a.pill:hover::before {
     position: static;
     width: auto;
     height: auto;
+    padding-inline: 0;
     overflow: visible;
     gap: 20px;
   }
