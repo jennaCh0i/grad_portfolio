@@ -34,7 +34,7 @@
 
   /* Shape */
   --pill-h: 28px;
-  --radius-pill: 999px;
+  --radius-pill: 8px;
   --radius-chip: 8px;
   --radius-card: 24px;
 
@@ -134,7 +134,7 @@ a.pill:hover { background: var(--hover); }
   left: 0;
   right: 0;
   padding: 6px;
-  border-radius: 14px;
+  border-radius: 10px;
   background: #fff;
   box-shadow: 0 8px 28px rgba(10, 18, 36, 0.08), 0 0 0 1px var(--border-subtle);
 }
@@ -142,7 +142,7 @@ a.pill:hover { background: var(--hover); }
 .menu__muted {
   display: block;
   padding: 8px 12px;
-  border-radius: 9px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
 }
