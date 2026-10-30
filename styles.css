@@ -15,6 +15,7 @@
   --border-subtle: #ededed;
   --hover: #e7e7e7;
   --rule: #dcdcdc;
+  --glow: rgba(81, 183, 223, 0.7); /* soft accent glow on hover */
   --accent: #51b7df;
   --accent-hover: #46a9d0;
   --cueue: #579bfe;
@@ -130,11 +131,11 @@ a.pill:hover { background: var(--hover); }
   font-size: 13px;
   font-weight: 500;
   white-space: nowrap;
-  transition: opacity 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .tab.is-current { color: var(--text-ink); }
 .tab:hover,
-.menu[open] > .tab { opacity: 0.45; }
+.menu[open] > .tab { background-color: transparent; color: var(--text-ink); }
 .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .segmented {
@@ -151,9 +152,9 @@ a.pill:hover { background: var(--hover); }
   color: var(--text-tertiary);
   font-size: 13px;
   font-weight: 500;
-  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
-.segmented__btn:hover { opacity: 0.45; }
+.segmented__btn:hover { background-color: transparent; box-shadow: none; color: var(--text-ink); }
 .segmented__btn.is-active {
   background: #fff;
   color: var(--text-ink);
@@ -185,6 +186,35 @@ a.pill:hover { background: var(--hover); }
 }
 .menu__list a:hover { background: var(--bg-page); }
 .menu__muted { color: var(--text-tertiary); font-weight: 400; }
+
+/* ------------------------------------------------------------------
+   Hover glow — the bubble melts into a soft, blurred halo
+   ------------------------------------------------------------------ */
+.tab,
+.chip,
+.segmented__btn { position: relative; isolation: isolate; }
+.tab::before,
+.chip::before,
+.segmented__btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 999px;
+  background: var(--glow);
+  filter: blur(9px);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+.tab:hover::before,
+.menu[open] > .tab::before,
+.chip:hover::before,
+.segmented__btn:hover::before {
+  opacity: 1;
+  transform: scale(1.05);
+}
 
 /* ------------------------------------------------------------------
    Hero — centered on the grid's center line
@@ -308,9 +338,10 @@ a.pill:hover { background: var(--hover); }
   color: #5c5c5c; /* filter labels: 20% lighter than body type */
   font-size: 14px;
   font-weight: 500;
-  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
-.chip:hover { opacity: 0.45; }
+.chip:hover,
+.chip.is-active:hover { background-color: transparent; color: var(--text-ink); }
 .chip.is-active { background: var(--accent); color: #fff; }
 .chip:focus-visible,
 .pill:focus-visible,
