@@ -17,7 +17,6 @@
   --rule: #dcdcdc;
   --accent: #51b7df;
   --accent-hover: #46a9d0;
-  --on-accent: #1a1a1a;
   --cueue: #579bfe;
   --placeholder: #e3e3e3;
 
@@ -96,7 +95,7 @@ button { font: inherit; color: inherit; border: 0; cursor: pointer; }
   overflow: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-.pill--active { background: var(--accent); color: var(--on-accent); }
+.pill--active { background: var(--accent); color: #fff; }
 .pill--small { font-size: 12px; }
 .pill--center { justify-content: center; }
 .pill__sub { text-align: right; }
@@ -117,7 +116,7 @@ a.pill:hover { background: var(--hover); }
   padding-bottom: 10px;
   background: linear-gradient(var(--bg-page) 75%, rgba(244, 244, 244, 0));
 }
-.tabs { grid-column: 4 / 10; display: flex; gap: 8px; }
+.tabs { grid-column: 1 / 10; display: flex; gap: 8px; }
 .wordmark {
   grid-column: 10 / 16;
   justify-self: center;
@@ -126,7 +125,7 @@ a.pill:hover { background: var(--hover); }
   letter-spacing: 0.02em;
   color: var(--text-ink);
 }
-.segmented { grid-column: 16 / 22; justify-self: end; }
+.segmented { grid-column: 16 / 25; justify-self: end; }
 
 .tab {
   display: inline-flex;
@@ -141,9 +140,9 @@ a.pill:hover { background: var(--hover); }
   white-space: nowrap;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-.tab.is-current,
+.tab.is-current { color: var(--text-ink); }
 .tab:hover,
-.menu[open] > .tab { background: var(--accent); color: var(--on-accent); }
+.menu[open] > .tab { background: var(--accent); color: #fff; }
 .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .segmented {
@@ -198,43 +197,36 @@ a.pill:hover { background: var(--hover); }
 /* ------------------------------------------------------------------
    Hero — centered on the grid's center line
    ------------------------------------------------------------------ */
-.hero { padding-top: 6px; }
-.intro {
-  grid-column: 4 / 16;
-  justify-self: start;
-  max-width: 560px;
-  padding: 12px 14px 16px;
-  border-radius: var(--radius-chip);
-  background: var(--border-subtle);
-}
+.hero { padding-top: 90px; }
+.hero > .lead { justify-self: center; }
 .lead {
   position: relative;
-  font-size: 16px;
-  line-height: 21px;
-  letter-spacing: -0.1px;
-  color: var(--text-ink);
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: -0.4px;
+  text-align: center;
 }
 .lead strong { font-weight: 600; }
-.lead--sub { margin-top: 12px; }
+.lead__line { display: block; white-space: nowrap; }
 
-.flow { position: relative; display: inline-block; vertical-align: top; height: 21px; }
+.flow { position: relative; display: inline-block; vertical-align: top; height: 25px; }
 .flow__chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 21px;
-  border-radius: 6px;
-  background: var(--bg-page);
+  width: 76px;
+  height: 25px;
+  border-radius: var(--radius-chip);
+  background: var(--border-subtle);
   color: var(--text-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
   vertical-align: top;
 }
 .flow__dot {
   position: absolute;
-  left: 56px;
+  left: 72px;
   top: 50%;
   width: 8px;
   height: 8px;
@@ -244,21 +236,21 @@ a.pill:hover { background: var(--hover); }
 }
 .flow__line {
   position: absolute;
-  left: 60px;
+  left: 76px;
   top: 50%;
-  width: 48px;
+  width: 56px;
   height: 2px;
   transform: translateY(-50%);
   background: var(--accent);
 }
 .flow__box {
   position: absolute;
-  left: 108px;
-  top: -24px;
-  width: 64px;
-  height: 68px;
+  left: 132px;
+  top: -28px;
+  width: 76px;
+  height: 81px;
   border-radius: var(--radius-chip);
-  background: var(--accent);
+  background: var(--border-subtle);
 }
 
 /* Hover reveal: dot pops, line draws out, box pops up */
@@ -303,16 +295,7 @@ a.pill:hover { background: var(--hover); }
 /* ------------------------------------------------------------------
    Work — filters start at column 4; 3 cards × 6 columns
    ------------------------------------------------------------------ */
-.work { padding-top: 12px; }
-.title-bar {
-  margin-bottom: 12px;
-  padding: 7px 10px 6px;
-  border-radius: var(--radius-chip);
-  background: var(--accent);
-  color: var(--on-accent);
-}
-.title-bar__title { font-size: 13px; line-height: 16px; font-weight: 500; letter-spacing: 0.02em; }
-.title-bar__meta { font-size: 10px; line-height: 13px; }
+.work { padding-top: 52px; }
 
 .filters {
   display: flex;
@@ -336,7 +319,7 @@ a.pill:hover { background: var(--hover); }
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .chip:hover { background: var(--border-subtle); }
-.chip.is-active { background: var(--accent); color: var(--on-accent); }
+.chip.is-active { background: var(--accent); color: #fff; }
 .chip:focus-visible,
 .pill:focus-visible,
 .card__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -346,7 +329,7 @@ a.pill:hover { background: var(--hover); }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: var(--gutter);
   row-gap: var(--space-lg);
-  padding-top: 16px;
+  padding-top: var(--space-md);
 }
 .card { animation: card-in 0.35s ease both; }
 .card[hidden] { display: none; }
@@ -419,9 +402,6 @@ a.pill:hover { background: var(--hover); }
   :root { --gutter: 12px; --margin: 20px; }
   .hero > *,
   .work > * { grid-column: 1 / -1; }
-  .tabs { grid-column: 1 / 10; }
-  .segmented { grid-column: 16 / 25; }
-  .intro { grid-column: 1 / 13; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   /* header/footer edges follow the 2-up cards (1–12 | 13–24) */
   .site-footer > :nth-child(1) { grid-column: 1 / 13; }
@@ -442,9 +422,11 @@ a.pill:hover { background: var(--hover); }
   .tab { padding: 0 12px; }
   .segmented__btn { width: 56px; }
   .pill { padding: 0 12px; }
-  .intro { grid-column: 1 / -1; }
+  .hero { padding-top: 80px; }
+  .lead { font-size: 18px; line-height: 24px; }
+  .lead__line { display: inline; white-space: normal; }
   .flow__dot, .flow__line, .flow__box { display: none; }
-  .work { padding-top: 12px; }
+  .work { padding-top: var(--space-xl); }
   .grid { grid-template-columns: 1fr; }
   .site-footer { row-gap: var(--space-xs); padding-top: var(--space-xl); }
   .site-footer > :nth-child(1) { grid-column: 1 / -1; }
