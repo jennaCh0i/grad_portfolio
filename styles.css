@@ -7,13 +7,13 @@
      Footer   1–9 | 10–15 | 16–21 | 22–24
    ------------------------------------------------------------------ */
 :root {
-  --bg-page: #fbfbfb;
+  --bg-page: #f4f4f4;
   --text-primary: #333333;
   --text-ink: #333333;
   --text-tertiary: #a8a8a8;
   --text-muted: #9a9a9a;
-  --border-subtle: #f6f6f6;
-  --hover: #f0f0f0;
+  --border-subtle: #ededed;
+  --hover: #e7e7e7;
   --rule: #dcdcdc;
   --accent: #51b7df;
   --accent-hover: #46a9d0;
@@ -117,7 +117,7 @@ a.pill:hover { background: var(--hover); }
   z-index: 10;
   padding-top: 20px;
   padding-bottom: 8px;
-  background: linear-gradient(var(--bg-page) 70%, rgba(251, 251, 251, 0));
+  background: linear-gradient(var(--bg-page) 70%, rgba(244, 244, 244, 0));
 }
 .site-header > :nth-child(1) { grid-column: 1 / 10; }
 .site-header > :nth-child(2) { grid-column: 10 / 19; }
