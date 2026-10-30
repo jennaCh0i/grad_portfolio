@@ -16,9 +16,10 @@
 <body>
   <div class="layout page-grid">
     <aside class="sidebar">
-      <nav class="tabs" aria-label="Main">
-        <a class="tab" href="/">Work</a>
-        <a class="tab is-current" href="/about" aria-current="page">About</a>
+      <nav class="navbar" aria-label="Main">
+        <a class="navbar__item" href="/">Work</a>
+        <a class="navbar__item is-current" href="/about" aria-current="page">About</a>
+        <a class="navbar__item" href="/fun">Fun</a>
       </nav>
 
       <p class="lead">
@@ -26,14 +27,6 @@
         that help people stay in the flow.
       </p>
 
-      <div class="control sidebar__bottom">
-        <p class="control__label">Contact</p>
-        <div class="filters">
-          <a class="chip" href="#" data-link="email">Email</a>
-          <a class="chip" href="#" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="chip" href="#" data-link="resume" target="_blank" rel="noopener">Resume</a>
-        </div>
-      </div>
     </aside>
 
     <main class="main about" aria-label="About">
@@ -74,7 +67,7 @@
       </section>
 
       <footer class="site-footer">
-        <p class="pill pill--small pill--center">© 2026 Jenna Choi. All rights reserved.</p>
+        <p class="pill pill--small pill--center">© 2026 Jenna Choi</p>
         <a class="pill pill--small" href="#" data-link="email"><span>Email</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
         <a class="pill pill--small" href="#" data-link="linkedin" target="_blank" rel="noopener"><span>LinkedIn</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
         <a class="pill pill--small" href="#" data-link="resume" target="_blank" rel="noopener"><span>Resume</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
