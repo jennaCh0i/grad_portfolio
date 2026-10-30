@@ -1,0 +1,97 @@
+JENNA
+CHOI
+
+
+
+Work
+Playground
+About
+
+
+
+
+
+Updated 2026 Oct
+Overview
+Problem
+Prototype
+Experience
+Micro-interactions
+Design System
+UI/UX · AI · Motion · 2026
+Sweetie — Start with one word
+Sweetie is an AI-powered ordering experience for Sweetgreen that turns a single word — a craving, a mood, or a need — into a strong starting bowl, so customers never have to build one from scratch.
+*Student project, not affiliated with Sweetgreen.
+Role
+UI designer
+Timeline
+10 weeks
+Tools
+Figma
+Problem
+Too much customization can turn choice into decision overload.
+Today’s ordering flow asks customers to build every bowl ingredient by ingredient.
+Current Sweetgreen in-store kiosk
+Who is this for?
+Customers who know what they want, but not exactly what to order — people in a hurry, new to the menu, working toward a dietary goal, or looking for a personalized bowl without building it from scratch.
+Top task
+Get a personalized bowl recommendation from a single keyword.
+Sub tasks
+Review the recommended bowl
+Understand why the bowl was recommended
+Check ingredients and nutrition
+Explore ingredient sourcing
+Customize the recommendation if needed
+Try the prototype
+Interactive tablet prototype — click through it here, or open it full size.
+Open in new tab ↗
+Experience
+An information architecture built around one keyword, with the LLM stepping in at the moments that need judgement.
+Keyword
+→
+Recommendation
+→
+Customize
+→
+Order
+→
+Understand
+01 — Start with a keyword. 
+
+Start with one word.
+Suggested keywords and what others are ordering.
+02 — Recommendation & customize. 
+Refreshing · High protein · 620 cal
+Adjust bases, toppings and dressings, then order.
+03 — Ask & learn your ingredients. 
+04 — Your orders. Reorder a favorite or revisit what was in your bowl.
+Your orders, saved by keyword.
+Micro-interactions
+Small, soft motions that show the AI is working and confirm every choice.
+Trending nudge
+Pops out of the Sweetie button when there’s something to explore.
+Store header
+Location and hours slide in so you know where you’re ordering.
+Keyword wheel
+Keywords scroll into focus and blur as they leave.
+Bowl ready
+The hex breathes while the bowl is being built.
+Ingredient amounts
+Pills fill to show how much — and stop at the group limit.
+Dietary toggles
+Filters snap on with a check, so the choice is confirmed.
+Design system
+Fresh
+Starts from what the user wants right now — their mood, craving, goal, or preference.
+Curated
+Thoughtfully selects and combines ingredients into a personalized recommendation.
+Real
+Builds trust by showing real nutrition, ingredients, and sourcing behind the recommendation.
+12 columns · 9 rows · 45px margin · 20px gutter
+Figtree Regular
+Dark Green #00473D · Sweetie Gradient · Greys, Light Green, Beige
+1px outline · 30px corner radius · hex bowl
+← Back to work
+Next project
+Camper Twin Campaign
+
