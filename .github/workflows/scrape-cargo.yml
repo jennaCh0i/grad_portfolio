@@ -1,0 +1,21 @@
+name: Import from Cargo site
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i playwright@1 && npx playwright install --with-deps chromium
+      - run: node tools/scrape-cargo.mjs
+      - name: Commit to cargo-import branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898273+github-actions[bot]@users.noreply.github.com"
+          git checkout -b cargo-import
+          git add cargo-import
+          git commit -m "Import images and text from jennachoi.work"
+          git push -f origin cargo-import
