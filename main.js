@@ -67,3 +67,25 @@ function setView(view) {
 }
 viewBtns.forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
 try { if (localStorage.getItem("view") === "list") setView("list"); } catch (e) {}
+
+// Project pages: highlight the section you're reading in "On this page"
+const sectionLinks = [...document.querySelectorAll("[data-section]")];
+if (sectionLinks.length && "IntersectionObserver" in window) {
+  const byId = new Map(sectionLinks.map((a) => [a.dataset.section, a]));
+  const targets = [...byId.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+  let current = null;
+  const mark = (id) => {
+    if (id === current) return;
+    current = id;
+    sectionLinks.forEach((a) => a.classList.toggle("is-here", a.dataset.section === id));
+  };
+  const io = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible[0]) mark(visible[0].target.id);
+    },
+    { rootMargin: "-10% 0px -70% 0px" }
+  );
+  targets.forEach((t) => io.observe(t));
+  mark(targets[0]?.id);
+}
