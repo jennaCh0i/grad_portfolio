@@ -20,12 +20,12 @@ SITE = {
 
 # Home grid, in order. side = which column; shape = tall | wide
 CARDS = [
+    {"title": "Sweetie AI", "year": "2026", "href": "/sweetie", "img": "sweetie.webp", "shape": "wide",
+     "desc": "An AI ordering experience for Sweetgreen that turns one word into a starting bowl.", "tags": "uiux motion"},
     {"title": "Hermès Sponsored Project", "year": "2025", "href": "/hermes", "img": "hermes.webp", "shape": "tall", "pos": "center top",
      "desc": "A pocket-sized escape — packaging, illustration and motion for the Vivlio book holder.", "tags": "identity motion"},
     {"title": "WIRED logo reveal", "year": "2024", "href": "/wired", "img": "wired.webp", "hover_video": "/assets/work/wired.mp4", "shape": "wide",
      "desc": "A 3D logo reveal built from soft-body materials in Cinema 4D.", "tags": "motion identity"},
-    {"title": "Sweetie AI", "year": "2026", "href": "/sweetie", "img": "sweetie.webp", "shape": "wide",
-     "desc": "An AI ordering experience for Sweetgreen that turns one word into a starting bowl.", "tags": "uiux motion"},
     {"title": "Camper Twin Campaign", "year": "2025", "href": "/camper", "img": "camper.webp", "hover_video": "/assets/projects/camper/v06.mp4", "shape": "video",
      "desc": "A motion campaign about twins — different in detail, made to be side by side.", "tags": "motion"},
     {"title": "MIT LIST: All Life Alive", "year": "2024", "href": "/all-life-alive", "img": "mit.webp", "shape": "wide",
