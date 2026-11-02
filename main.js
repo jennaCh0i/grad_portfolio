@@ -1,8 +1,8 @@
 // Contact links — fill these in once and every Email / LinkedIn / Résumé link on the site updates.
 const LINKS = {
-  email: "",    // e.g. "hello@jennachoi.work"
-  linkedin: "", // e.g. "https://www.linkedin.com/in/your-handle"
-  resume: "",   // e.g. "/assets/Jenna_Choi_Resume.pdf"
+  email: "jennachoi814@gmail.com",
+  linkedin: "https://www.linkedin.com/in/jenna-choi-558182250/",
+  resume: "/assets/Jenna_Choi_Resume.pdf",
 };
 
 document.querySelectorAll("[data-link]").forEach((el) => {
