@@ -52,7 +52,8 @@ def asset(slug, ref):
         ext = "gif" if os.path.exists(os.path.join(ROOT, f"assets/projects/{slug}/{val}.gif")) else "webp"
         return f'<img src="{base}/{val}.{ext}" alt="" loading="lazy" decoding="async" />'
     if kind == "v":
-        return f'<video src="{base}/v{val}.mp4" autoplay muted loop playsinline preload="metadata"></video>'
+        # first frame shows as a still; plays on hover (see main.js)
+        return f'<video src="{base}/v{val}.mp4#t=0.1" muted loop playsinline preload="metadata" data-hover-play></video>'
     if kind == "vimeo":
         return (f'<div class="embed"><iframe src="https://player.vimeo.com/video/{val}?title=0&byline=0&portrait=0&dnt=1" '
                 f'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="Video"></iframe></div>')

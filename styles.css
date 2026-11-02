@@ -146,6 +146,7 @@ h1, h2 { margin: 0; font-weight: 400; }
 }
 .card__media--tall { aspect-ratio: 3 / 4; }
 .card__media--wide { aspect-ratio: 10 / 7; }
+.card__media--video { aspect-ratio: 16 / 9; }
 .card__media img,
 .card__media video,
 .card__fill {

@@ -49,10 +49,10 @@ filterBtns.forEach((btn) => {
 const hoverVideos = [...document.querySelectorAll("video[data-hover-play]")];
 const canHover = window.matchMedia("(hover: hover)").matches;
 const play = (v) => { v.preload = "auto"; v.play().catch(() => {}); };
-const stop = (v) => { v.pause(); v.currentTime = 0; };
+const stop = (v) => { v.pause(); v.currentTime = v.closest(".fig") ? 0.1 : 0; };
 if (canHover) {
   hoverVideos.forEach((v) => {
-    const card = v.closest(".card") || v;
+    const card = v.closest(".card, .fig") || v;
     card.addEventListener("mouseenter", () => play(v));
     card.addEventListener("mouseleave", () => stop(v));
     card.addEventListener("focusin", () => play(v));
