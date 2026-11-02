@@ -103,7 +103,7 @@ h1, h2 { margin: 0; font-weight: 400; }
 .toc { display: flex; flex-direction: column; padding-top: 14px; }
 /* Section labels: small and grey, like "Details" / "Overview" on article pages */
 .toc__head { margin: 20px 0 3px; font-size: 12px; color: var(--muted); }
-.toc__head:first-child { margin-top: 0; }
+.toc__sec:first-child .toc__head { margin-top: 0; }
 .toc__group { display: flex; flex-direction: column; }
 .toc__item {
   display: flex;
@@ -368,15 +368,33 @@ h1, h2 { margin: 0; font-weight: 400; }
   .side__foot { display: none; }
   .work { margin: 32px var(--margin) 0; padding-top: 0; }
   .signoff { margin-left: var(--margin); }
-  .home::after { left: 0; height: 80px; }
+  .home::after { left: 0; height: 56px; }
+  /* Index · Work · Links side by side instead of one long list */
+  .toc {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    column-gap: var(--gutter);
+  }
+  .toc__sec .toc__head { margin-top: 0; }
 }
 
-/* Not enough room beside the column: keep just "Back home" in a top bar */
+/* Not enough room beside the column: shortcuts hide; "Back home" + clock
+   stay pinned in a soft top bar so you can always get back */
 @media (max-width: 1180px) {
   .agenda__list { display: none; }
-  .agenda, .art-top { position: absolute; }
-  .agenda { width: auto; max-width: none; }
+  .agenda { width: auto; max-width: none; top: 0; padding-top: 14px; }
+  .art-top { top: 14px; }
   .back { white-space: nowrap; }
+  .article::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 56px;
+    z-index: 9;
+    background: linear-gradient(var(--bg) 72%, rgba(247, 247, 247, 0));
+    pointer-events: none;
+  }
+  .art { padding-top: 46px; }
 }
 
 @media (max-width: 640px) {
@@ -385,8 +403,19 @@ h1, h2 { margin: 0; font-weight: 400; }
   .work__col { display: contents; }
   .card { order: var(--order); }
   .two { grid-template-columns: 1fr; gap: 20px; }
+  /* Phone: Index + Links share a row, Work filters below; bigger tap targets */
+  .side { margin-top: 52px; }
+  .side__intro { gap: 1em; }
+  .toc { grid-template-columns: 1fr 1fr; row-gap: 18px; }
+  .toc__sec--work { grid-column: 1 / -1; grid-row: 2; }
+  .toc__item { padding: 4px 0; }
+  .toc__group { flex-direction: row; flex-wrap: wrap; column-gap: 16px; }
+  .toc__group .toc__item { width: auto; justify-content: flex-start; gap: 4px; }
+  .chip__count { font-size: 11px; }
   .art__title { margin-top: 48px; font-size: 26px; }
   .row--2, .row--3 { grid-template-columns: 1fr; }
+  /* tablet prototype is too cramped on a phone — the "Open in new tab" link stays */
+  .embed--app { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

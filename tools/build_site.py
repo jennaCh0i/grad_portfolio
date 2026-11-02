@@ -124,14 +124,20 @@ def home():
       <p>{esc(SITE["currently"])} <span class="accent">{esc(SITE["previously"])}</span></p>
     </div>
     <nav class="toc" aria-label="Index">
+      <div class="toc__sec toc__sec--index">
       <p class="toc__head">Index</p>
 {index}
+      </div>
+      <div class="toc__sec toc__sec--work">
       <p class="toc__head">Work</p>
       <div class="toc__group" role="toolbar" aria-label="Filter projects">
 {filters}
       </div>
+      </div>
+      <div class="toc__sec toc__sec--links">
       <p class="toc__head">Links</p>
 {links}
+      </div>
     </nav>
     <p class="side__foot">©2026 {SITE["name"]} <span class="side__sep">|</span> <span class="muted">Last updated {SITE["updated"]}</span></p>
   </aside>
