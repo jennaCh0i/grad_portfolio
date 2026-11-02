@@ -71,10 +71,10 @@ h1, h2 { margin: 0; font-weight: 400; }
 }
 .topbar > * { pointer-events: auto; }
 .mark {
-  width: 22px;
-  height: 9px;
+  width: 24px;
+  height: 12px;
   border: 1.5px solid var(--ink);
-  border-radius: 50%;
+  border-radius: 4px;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 .mark:hover { border-color: var(--accent); background: var(--accent); }
@@ -117,7 +117,19 @@ h1, h2 { margin: 0; font-weight: 400; }
 .toc__group .toc__item { color: var(--muted); }
 .toc__group .toc__item:hover { color: var(--ink); }
 .toc__group .toc__item.is-active { color: var(--ink); }
-.toc__group .toc__item.is-active > span:first-child::after { content: " ●"; color: var(--accent); font-size: 8px; vertical-align: 2px; }
+/* Filters read as "pick one": hollow dot, filled blue dot when selected */
+.toc__group .toc__item > span:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  vertical-align: 1px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.toc__group .toc__item.is-active > span:first-child::before { background: var(--accent); border-color: var(--accent); }
 .chip__count { color: var(--muted); font-variant-numeric: tabular-nums; }
 .side__foot { margin-top: auto; padding-top: 24px; }
 .side__sep { color: var(--rule); }

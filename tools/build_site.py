@@ -102,22 +102,15 @@ def card(c, i):
 def home():
     left = [card(c, i) for i, c in enumerate(CARDS) if i % 2 == 0]
     right = [card(c, i) for i, c in enumerate(CARDS) if i % 2 == 1]
-    n = 0
-
-    def num():
-        nonlocal n
-        n += 1
-        return f"{n:02d}."
-
     index = "\n".join([
-        f'        <a class="toc__item" href="/about"><span>{num()} About</span><span class="toc__arrow">→</span></a>',
-        f'        <a class="toc__item" href="/fun"><span>{num()} Fun</span><span class="toc__arrow">→</span></a>',
+        f'        <a class="toc__item" href="/about"><span>About</span><span class="toc__arrow">→</span></a>',
+        f'        <a class="toc__item" href="/fun"><span>Fun</span><span class="toc__arrow">→</span></a>',
     ])
     filters = "\n".join(
-        f'        <button class="toc__item{" is-active" if k == "all" else ""}" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}"><span>{num()} {esc(label)}</span></button>'
+        f'        <button class="toc__item{" is-active" if k == "all" else ""}" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}"><span>{esc(label)}</span></button>'
         for k, label in FILTERS)
     links = "\n".join(
-        f'        <a class="toc__item" href="#" data-link="{k}"{"" if k == "email" else " target=\"_blank\" rel=\"noopener\""}><span>{num()} {label}</span><span class="toc__arrow">↗</span></a>'
+        f'        <a class="toc__item" href="#" data-link="{k}"{"" if k == "email" else " target=\"_blank\" rel=\"noopener\""}><span>{label}</span><span class="toc__arrow">↗</span></a>'
         for k, label in [("email", "Email"), ("linkedin", "LinkedIn"), ("resume", "Résumé")])
     return head(f'{SITE["name"]} — Designer', SITE["bio"], "home") + f'''
   <header class="topbar">
