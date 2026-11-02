@@ -22,7 +22,7 @@ SITE = {
 CARDS = [
     {"title": "Hermès Sponsored Project", "year": "2025", "href": "/hermes", "img": "hermes.webp", "shape": "tall", "pos": "center top",
      "desc": "A pocket-sized escape — packaging, illustration and motion for the Vivlio book holder.", "tags": "identity motion"},
-    {"title": "WIRED logo reveal", "year": "2024", "href": "/wired", "img": "wired.webp", "shape": "wide",
+    {"title": "WIRED logo reveal", "year": "2024", "href": "/wired", "img": "wired.webp", "hover_video": "/assets/work/wired.mp4", "shape": "wide",
      "desc": "A 3D logo reveal built from soft-body materials in Cinema 4D.", "tags": "motion identity"},
     {"title": "Sweetie AI", "year": "2026", "href": "/sweetie", "img": "sweetie.webp", "shape": "wide",
      "desc": "An AI ordering experience for Sweetgreen that turns one word into a starting bowl.", "tags": "uiux motion"},

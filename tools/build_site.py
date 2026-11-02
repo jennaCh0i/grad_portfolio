@@ -77,7 +77,10 @@ def rows_html(slug, rows):
 # ---------------------------------------------------------------- home
 def card(c, i):
     shape = c.get("shape", "wide")
-    if c.get("video"):
+    if c.get("hover_video"):
+        m = (f'<video src="{c["hover_video"]}" poster="/assets/work/{c["img"]}" muted loop playsinline preload="none" '
+             f'data-hover-play></video>')
+    elif c.get("video"):
         m = f'<video src="{c["video"]}" poster="/assets/work/{c["img"]}" autoplay muted loop playsinline preload="metadata"></video>'
     elif c.get("img"):
         pos = f' style="object-position:{c["pos"]}"' if c.get("pos") else ""

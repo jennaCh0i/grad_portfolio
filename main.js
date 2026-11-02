@@ -44,3 +44,22 @@ filterBtns.forEach((btn) => {
     cards.forEach((c) => { c.hidden = !matches(c, f); });
   });
 });
+
+// Card videos that only play on hover (or while on screen, on touch devices)
+const hoverVideos = [...document.querySelectorAll("video[data-hover-play]")];
+const canHover = window.matchMedia("(hover: hover)").matches;
+const play = (v) => { v.preload = "auto"; v.play().catch(() => {}); };
+const stop = (v) => { v.pause(); v.currentTime = 0; };
+if (canHover) {
+  hoverVideos.forEach((v) => {
+    const card = v.closest(".card") || v;
+    card.addEventListener("mouseenter", () => play(v));
+    card.addEventListener("mouseleave", () => stop(v));
+    card.addEventListener("focusin", () => play(v));
+    card.addEventListener("focusout", () => stop(v));
+  });
+} else if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries) =>
+    entries.forEach((e) => (e.isIntersecting ? play(e.target) : stop(e.target))), { threshold: 0.6 });
+  hoverVideos.forEach((v) => io.observe(v));
+}
