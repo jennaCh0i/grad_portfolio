@@ -1,17 +1,66 @@
-"""Generate the project pages (hermes.html, wired.html, ...) from the data below.
+"""Site content. Edit here, then run:  python3 tools/build_site.py
 
-Run from the repo root:  python3 tools/build_projects.py
-Media references:
-  "i:08"            -> assets/projects/<slug>/08.webp (or .gif)
-  "v:01"            -> assets/projects/<slug>/v01.mp4 (autoplay, muted, loop)
-  "vimeo:1234"      -> Vimeo player
-  "iframe:<url>"    -> embedded page
-A row is a list of 1-4 items; (item, "caption") pairs add a caption.
+Media references in project sections:
+  "i:08"          -> assets/projects/<slug>/08.webp (or .gif)
+  "v:01"          -> assets/projects/<slug>/v01.mp4 (autoplay, muted, loop)
+  "vimeo:1234"    -> Vimeo player
+  "iframe:<url>"  -> embedded page
+A row is a list of 1-3 items; (item, "caption") pairs add a caption.
 """
-import html
-import os
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE = {
+    "name": "Jenna Choi",
+    "city": "Pasadena",
+    "timezone": "America/Los_Angeles",
+    "updated": "11.01.2026",
+    "bio": "Jenna Choi is a designer and visual storyteller working across motion, graphic and interaction design. She creates experiences that help people stay in the flow.",
+    "currently": "Currently studying Interaction Design at ArtCenter. Previously @Apple, @Tesla and @Filmograph LA.",
+    "signoff": "Thanks for stopping by.",
+}
+
+# Home grid, in order. side = which column; shape = tall | wide
+CARDS = [
+    {"title": "Hermès Sponsored Project", "year": "2025", "href": "/hermes", "img": "hermes.webp", "shape": "tall",
+     "desc": "A pocket-sized escape — packaging, illustration and motion for the Vivlio book holder.", "tags": "identity motion"},
+    {"title": "WIRED logo reveal", "year": "2024", "href": "/wired", "img": "wired.webp", "shape": "wide",
+     "desc": "A 3D logo reveal built from soft-body materials in Cinema 4D.", "tags": "motion identity"},
+    {"title": "Sweetie AI", "year": "2026", "href": "/sweetie", "img": "sweetie.webp", "shape": "wide",
+     "desc": "An AI ordering experience for Sweetgreen that turns one word into a starting bowl.", "tags": "uiux motion"},
+    {"title": "Camper Twin Campaign", "year": "2025", "href": "/camper", "img": "camper.webp", "video": "/assets/projects/camper/v06.mp4", "shape": "tall",
+     "desc": "A motion campaign about twins — different in detail, made to be side by side.", "tags": "motion"},
+    {"title": "MIT LIST: All Life Alive", "year": "2024", "href": "/all-life-alive", "img": "mit.webp", "shape": "wide",
+     "desc": "Wayfinding, exhibition space and catalogue for a bioart exhibition.", "tags": "identity"},
+    {"title": "Petersen Automotive Museum", "year": "", "href": "/petersen", "img": "petersen.webp", "shape": "wide",
+     "desc": "A rebrand built around momentum and the museum’s new gear shift.", "tags": "identity motion"},
+    {"title": "Filmograph LA Internship", "year": "2025", "href": "https://www.filmograph.tv/project/bee-hive", "ext": True, "img": "filmograph.webp", "shape": "wide",
+     "desc": "3D motion for the Bee Hive project.", "tags": "motion internship"},
+    {"title": "Apple Internship", "year": "2026", "href": "https://www.apple.com/macbook-pro/proled-xdr-display/", "ext": True, "img": "apple.webp", "shape": "tall",
+     "desc": "Marcom design internship.", "tags": "motion internship"},
+    {"title": "More than hello, Memrise", "year": "Soon", "img": "memrise.webp", "shape": "tall", "soon": True,
+     "desc": "Branding and UI for a language-learning app.", "tags": "identity uiux"},
+    {"title": "Cueue", "year": "Soon", "fill": "#579bfe", "shape": "wide", "soon": True,
+     "desc": "A product for freelancers.", "tags": "uiux"},
+    {"title": "Design OS", "year": "Soon", "fill": "#e3e3e3", "shape": "wide", "soon": True,
+     "desc": "A product for designers’ workflow.", "tags": "uiux"},
+]
+
+FILTERS = [("all", "All work"), ("uiux", "UI/UX"), ("motion", "Motion"), ("identity", "Identity"), ("internship", "Internships")]
+
+ABOUT = {
+    "headline": "A designer and visual storyteller who shares emotion through motion.",
+    "lists": [
+        ("Education", [("ArtCenter College of Design", "B.S. Interaction Design (previously B.F.A. Graphic Design)", "Dec 2026")]),
+        ("Experience", [("Apple", "Marcom Design Intern", "02.2026 – Present"),
+                        ("Tesla", "Graphic Design Intern", "01.2026 – 02.2026"),
+                        ("Filmograph LA", "Motion Graphic Design Intern", "05.2025 – 08.2025"),
+                        ("Hermès", "Sponsored Project Graphic Designer", "01.2025 – 04.2025"),
+                        ("ArtCenter College of Design", "Teaching Assistant", "09.2024 – 05.2025")]),
+        ("Awards", [("Provost’s List", "ArtCenter", ""), ("Student Gallery Select", "ArtCenter", ""),
+                    ("Great Teachers Scholarship", "ArtCenter", "2024"), ("Bohnstedt Scholarship", "ArtCenter", "2023"),
+                    ("UG Scholarship", "ArtCenter", "2022")]),
+        ("Languages", [("English, Korean", "", "")]),
+    ],
+}
 
 PROJECTS = [
     {
@@ -189,154 +238,3 @@ PROJECTS = [
         ],
     },
 ]
-
-
-def esc(s):
-    return html.escape(s, quote=True)
-
-
-def asset(slug, ref):
-    kind, val = ref.split(":", 1)
-    base = f"/assets/projects/{slug}"
-    if kind == "i":
-        ext = "gif" if os.path.exists(os.path.join(ROOT, f"assets/projects/{slug}/{val}.gif")) else "webp"
-        return f'<img src="{base}/{val}.{ext}" alt="" loading="lazy" decoding="async" />'
-    if kind == "v":
-        return f'<video src="{base}/v{val}.mp4" autoplay muted loop playsinline preload="metadata"></video>'
-    if kind == "vimeo":
-        return (f'<div class="embed"><iframe src="https://player.vimeo.com/video/{val}?title=0&byline=0&portrait=0&dnt=1" '
-                f'allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="Video"></iframe></div>')
-    if kind == "iframe":
-        return f'<div class="embed embed--app"><iframe src="{esc(val)}" loading="lazy" title="Prototype"></iframe></div>'
-    raise ValueError(ref)
-
-
-def media(slug, item):
-    ref, cap = item if isinstance(item, tuple) else (item, None)
-    out = f'<figure class="pfig">{asset(slug, ref)}'
-    if cap:
-        out += f"<figcaption>{esc(cap)}</figcaption>"
-    return out + "</figure>"
-
-
-def rows_html(slug, rows):
-    out = []
-    for row in rows:
-        out.append(f'<div class="prow prow--{len(row)}">' + "".join(media(slug, i) for i in row) + "</div>")
-    return "\n".join(out)
-
-
-def facts_html(facts):
-    return '<dl class="pfacts">' + "".join(
-        f"<div><dt>{esc(k)}</dt><dd>{v}</dd></div>" for k, v in facts) + "</dl>"
-
-
-NAV = '''      <nav class="navbar" aria-label="Main">
-        <a class="navbar__item is-current" href="/" aria-current="page">Work</a>
-        <a class="navbar__item" href="/about">About</a>
-        <a class="navbar__item" href="/fun">Fun</a>
-      </nav>'''
-
-
-def page(p, nxt):
-    s = p["slug"]
-    nav_items = [("overview", "Overview")] + [(sec["id"], sec["nav"]) for sec in p["sections"] if sec.get("nav")]
-    side_links = "\n".join(
-        f'          <a class="chip" href="#{i}" data-section="{i}">{esc(n)}</a>' for i, n in nav_items)
-    hero = media(s, p["hero"])
-    overview = [f'<p class="phead__meta">{esc(p["meta"])}</p>',
-                f'<h1 class="phead__title">{esc(p["title"])}</h1>',
-                f'<p class="phead__summary">{esc(p["summary"])}</p>']
-    if p.get("note"):
-        overview.append(f'<p class="phead__note">{esc(p["note"])}</p>')
-    deliver = ""
-    if p.get("deliverables"):
-        deliver = ('<div class="psec__deliver"><p class="psec__label">My deliverables</p><ol>' +
-                   "".join(f"<li>{esc(d)}</li>" for d in p["deliverables"]) + "</ol></div>")
-    secs = []
-    for sec in p["sections"]:
-        parts = [f'<section class="psec" id="{sec["id"]}">', f'<p class="psec__label">{esc(sec["label"])}</p>']
-        if sec.get("heading"):
-            parts.append(f'<h2 class="psec__heading">{esc(sec["heading"])}</h2>')
-        if sec.get("body"):
-            parts.append(f'<p class="psec__body">{esc(sec["body"])}</p>')
-        if sec.get("flow"):
-            parts.append('<ol class="pflow">' + "".join(f"<li>{esc(x)}</li>" for x in sec["flow"]) + "</ol>")
-        if sec.get("facts"):
-            parts.append(facts_html(sec["facts"]))
-        if sec.get("link"):
-            t, u = sec["link"]
-            parts.append(f'<a class="pill pill--small psec__link" href="{esc(u)}" target="_blank" rel="noopener"><span>{esc(t)}</span></a>')
-        if sec.get("rows"):
-            parts.append(rows_html(s, sec["rows"]))
-        parts.append("</section>")
-        secs.append("\n".join(parts))
-    return f'''<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f7f7f7" />
-  <title>{esc(p["card"])} — Jenna Choi</title>
-  <meta name="description" content="{esc(p["summary"][:155])}" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-<body class="project">
-  <!-- Generated by tools/build_projects.py — edit the data there, then re-run. -->
-  <div class="layout page-grid">
-    <aside class="sidebar">
-{NAV}
-
-      <a class="back" href="/">← All work</a>
-
-      <div class="control">
-        <p class="control__label">On this page</p>
-        <div class="filters">
-{side_links}
-        </div>
-      </div>
-
-      <div class="control sidebar__bottom">
-        <p class="control__label">Next project</p>
-        <a class="chip chip--next" href="/{nxt["slug"]}">{esc(nxt["card"])} →</a>
-      </div>
-    </aside>
-
-    <main class="main pmain" aria-label="{esc(p["card"])}">
-      <header class="phead" id="overview">
-        {"".join(overview)}
-      </header>
-      <div class="prow prow--1 phero">{hero}</div>
-      {facts_html(p["facts"])}
-      {deliver}
-{chr(10).join(secs)}
-
-      <nav class="pnext">
-        <a class="pill pill--small" href="/"><span>← Back to work</span></a>
-        <a class="pnext__link" href="/{nxt["slug"]}"><span class="psec__label">Next project</span><span class="pnext__title">{esc(nxt["card"])} →</span></a>
-      </nav>
-
-      <footer class="site-footer">
-        <p class="pill pill--small pill--center">© 2026 Jenna Choi</p>
-        <a class="pill pill--small" href="#" data-link="email"><span>Email</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
-        <a class="pill pill--small" href="#" data-link="linkedin" target="_blank" rel="noopener"><span>LinkedIn</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
-        <a class="pill pill--small" href="#" data-link="resume" target="_blank" rel="noopener"><span>Resume</span><span class="pill__arrow" aria-hidden="true">↗</span></a>
-      </footer>
-    </main>
-  </div>
-
-  <script src="/main.js" defer></script>
-</body>
-</html>
-'''
-
-
-if __name__ == "__main__":
-    for i, p in enumerate(PROJECTS):
-        nxt = PROJECTS[(i + 1) % len(PROJECTS)]
-        with open(os.path.join(ROOT, f'{p["slug"]}.html'), "w") as f:
-            f.write(page(p, nxt))
-        print("wrote", p["slug"] + ".html")

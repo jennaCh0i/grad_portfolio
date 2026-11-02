@@ -2,13 +2,11 @@
 
 Static site (plain HTML / CSS / JS, no build step), deployed on Vercel from `main`.
 
-- `index.html` — Work (project grid + filters)
-- `about.html`, `fun.html` — About and Fun pages
-- `hermes.html`, `wired.html`, `sweetie.html`, `camper.html`, `all-life-alive.html`, `petersen.html`
-  — project pages, **generated** by `tools/build_projects.py`. Edit the text/media list there and run
-  `python3 tools/build_projects.py`.
+Every page is **generated**: edit the text, cards and media lists in `tools/content.py`, then run
+`python3 tools/build_site.py`. That writes `index.html`, `about.html`, `fun.html` and the project pages
+(`hermes`, `wired`, `sweetie`, `camper`, `all-life-alive`, `petersen`).
 - `styles.css` — tokens, layout, components
-- `main.js` — filters, Grid/List view, "On this page" highlighting, contact links (`LINKS` at the top)
+- `main.js` — work filters, live clock, contact links (`LINKS` at the top)
 - `assets/work/` — home thumbnails · `assets/projects/<slug>/` — project images (`NN.webp`) and loops (`vNN.mp4`)
 
 Originals imported from the old Cargo site live on the `cargo-import` branch.
