@@ -212,20 +212,44 @@ h1, h2 { margin: 0; font-weight: 400; }
 /* ------------------------------------------------------------------
    Article pages — project, About, Fun
    ------------------------------------------------------------------ */
+/* Clock stays top-right; "Back home" + section shortcuts stay top-left while scrolling */
 .art-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px var(--margin) 0;
+  position: fixed;
+  top: 18px;
+  right: var(--margin);
+  z-index: 10;
 }
+.agenda {
+  position: fixed;
+  top: 18px;
+  left: var(--margin);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: calc((100% - 720px) / 2 - 2 * var(--margin));
+  max-width: 220px;
+}
+.agenda__list { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.agenda__item {
+  margin-left: -10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--muted);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.agenda__item:hover { color: var(--ink); }
+.agenda__item.is-here { background: #ededed; color: var(--ink); }
 .back { color: var(--ink); transition: color 0.2s ease; }
 .back:hover { color: var(--accent); }
 
 .art {
   width: min(720px, calc(100% - 2 * var(--margin)));
   margin: 0 auto;
-  padding: 24px 0 0;
+  padding: 42px 0 0;
 }
+.art [id] { scroll-margin-top: 32px; }
 .crumb { color: var(--ink); }
 .crumb a { color: var(--muted); transition: color 0.2s ease; }
 .crumb a:hover { color: var(--ink); }
@@ -335,6 +359,14 @@ h1, h2 { margin: 0; font-weight: 400; }
   .work { margin: 32px var(--margin) 0; padding-top: 0; }
   .signoff { margin-left: var(--margin); }
   .home::after { left: 0; height: 80px; }
+}
+
+/* Not enough room beside the column: keep just "Back home" in a top bar */
+@media (max-width: 1180px) {
+  .agenda__list { display: none; }
+  .agenda, .art-top { position: absolute; }
+  .agenda { width: auto; max-width: none; }
+  .back { white-space: nowrap; }
 }
 
 @media (max-width: 640px) {

@@ -63,3 +63,20 @@ if (canHover) {
     entries.forEach((e) => (e.isIntersecting ? play(e.target) : stop(e.target))), { threshold: 0.6 });
   hoverVideos.forEach((v) => io.observe(v));
 }
+
+// Project pages: highlight the section you're reading in the left shortcuts
+const sectionLinks = [...document.querySelectorAll("[data-section]")];
+if (sectionLinks.length && "IntersectionObserver" in window) {
+  const targets = sectionLinks.map((a) => document.getElementById(a.dataset.section)).filter(Boolean);
+  const mark = (id) => sectionLinks.forEach((a) => a.classList.toggle("is-here", a.dataset.section === id));
+  const io = new IntersectionObserver((entries) => {
+    const hit = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    if (hit) mark(hit.target.id);
+  }, { rootMargin: "-15% 0px -70% 0px" });
+  targets.forEach((t) => io.observe(t));
+  mark(targets[0] && targets[0].id);
+  // at the very bottom, highlight the last section
+  window.addEventListener("scroll", () => {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) mark(targets[targets.length - 1].id);
+  }, { passive: true });
+}

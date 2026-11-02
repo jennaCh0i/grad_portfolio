@@ -150,12 +150,17 @@ def home():
 
 
 # ---------------------------------------------------------------- article pages
-def article_shell(title, desc, crumb, body):
+def article_shell(title, desc, crumb, body, agenda=None):
+    links = ""
+    if agenda:
+        links = "\n" + "\n".join(
+            f'      <a class="agenda__item" href="#{i}" data-section="{i}">{esc(n)}</a>' for i, n in agenda) + "\n    "
     return head(title, desc, "article") + f'''
-  <header class="art-top">
+  <aside class="agenda" aria-label="On this page">
     <a class="back" href="/">← Back home</a>
-    {CLOCK}
-  </header>
+    <nav class="agenda__list">{links}</nav>
+  </aside>
+  <header class="art-top">{CLOCK}</header>
 
   <main class="art">
     <p class="crumb"><a href="/">Home</a> <span>/</span> {esc(crumb)}</p>
@@ -183,7 +188,7 @@ def project(p, nxt):
     if p.get("note"):
         overview += f'<p class="muted small">{esc(p["note"])}</p>'
     parts = [
-        f'    <h1 class="art__title">{esc(p["title"])}</h1>',
+        f'    <h1 class="art__title" id="overview">{esc(p["title"])}</h1>',
         "    " + two(f'<p class="lbl">Details</p><p class="lbl-sub">{esc(p["meta"])}</p>{details}',
                     f'<p class="lbl">Overview</p>{overview}', "two--intro"),
         f'    <div class="hero">{media(s, p["hero"])}</div>',
@@ -213,7 +218,8 @@ def project(p, nxt):
     parts.append("    " + DIVIDER)
     parts.append("    " + two(f'<p class="lbl">Next project</p><h2 class="art__h2"><a class="ulink" href="/{nxt["slug"]}">{esc(nxt["card"])} →</a></h2>',
                               '<p><a class="ulink" href="/">← Back to all work</a></p>', "two--next"))
-    return article_shell(f'{p["card"]} — {SITE["name"]}', p["summary"], p["card"], "\n".join(parts))
+    agenda = [("overview", "Overview")] + [(sec["id"], sec["nav"]) for sec in p["sections"] if sec.get("nav")]
+    return article_shell(f'{p["card"]} — {SITE["name"]}', p["summary"], p["card"], "\n".join(parts), agenda)
 
 
 def about():
