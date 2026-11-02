@@ -121,7 +121,7 @@ def home():
   <aside class="side">
     <div class="side__intro">
       <p>{esc(SITE["bio"])}</p>
-      <p>{esc(SITE["currently"])}</p>
+      <p>{esc(SITE["currently"])} <span class="accent">{esc(SITE["previously"])}</span></p>
     </div>
     <nav class="toc" aria-label="Index">
       <p class="toc__head">Index</p>
@@ -222,7 +222,7 @@ def about():
         for k, label in [("email", "Email"), ("linkedin", "LinkedIn"), ("resume", "Résumé")])
     parts = [f'    <h1 class="art__title">{esc(ABOUT["headline"])}</h1>',
              "    " + two(f'<p class="lbl">Contact</p>{contact}',
-                         f'<p class="lbl">Overview</p><p>{esc(SITE["bio"])}</p><p>{esc(SITE["currently"])}</p>', "two--intro"),
+                         f'<p class="lbl">Overview</p><p>{esc(SITE["bio"])}</p><p>{esc(SITE["currently"])} <span class="accent">{esc(SITE["previously"])}</span></p>', "two--intro"),
              "    " + DIVIDER]
     for label, items in ABOUT["lists"]:
         rows = "".join(

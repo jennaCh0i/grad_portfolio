@@ -14,7 +14,8 @@ SITE = {
     "timezone": "America/Los_Angeles",
     "updated": "11.01.2026",
     "bio": "Jenna Choi is a designer and visual storyteller working across motion, graphic and interaction design. She creates experiences that help people stay in the flow.",
-    "currently": "Currently studying Interaction Design at ArtCenter. Previously @Apple, @Tesla and @Filmograph LA.",
+    "currently": "Currently studying Interaction Design at ArtCenter.",
+    "previously": "Previously @Apple, @Tesla and @Filmograph LA.",  # shown in blue
     "signoff": "Thanks for stopping by.",
 }
 
