@@ -80,7 +80,8 @@ def card(c, i):
     if c.get("video"):
         m = f'<video src="{c["video"]}" poster="/assets/work/{c["img"]}" autoplay muted loop playsinline preload="metadata"></video>'
     elif c.get("img"):
-        m = f'<img src="/assets/work/{c["img"]}" alt="" loading="{"eager" if i < 2 else "lazy"}" />'
+        pos = f' style="object-position:{c["pos"]}"' if c.get("pos") else ""
+        m = f'<img src="/assets/work/{c["img"]}" alt=""{pos} loading="{"eager" if i < 2 else "lazy"}" />'
     else:
         m = f'<span class="card__fill" style="background:{c["fill"]}"></span>'
     title = esc(c["title"]) + (' <span class="card__ext" aria-hidden="true">↗</span>' if c.get("ext") else "")

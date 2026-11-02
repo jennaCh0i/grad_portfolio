@@ -20,7 +20,7 @@ SITE = {
 
 # Home grid, in order. side = which column; shape = tall | wide
 CARDS = [
-    {"title": "Hermès Sponsored Project", "year": "2025", "href": "/hermes", "img": "hermes.webp", "shape": "tall",
+    {"title": "Hermès Sponsored Project", "year": "2025", "href": "/hermes", "img": "hermes.webp", "shape": "tall", "pos": "center top",
      "desc": "A pocket-sized escape — packaging, illustration and motion for the Vivlio book holder.", "tags": "identity motion"},
     {"title": "WIRED logo reveal", "year": "2024", "href": "/wired", "img": "wired.webp", "shape": "wide",
      "desc": "A 3D logo reveal built from soft-body materials in Cinema 4D.", "tags": "motion identity"},
