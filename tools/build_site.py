@@ -107,7 +107,7 @@ def home():
         f'        <a class="toc__item" href="/fun"><span>Fun</span><span class="toc__arrow">→</span></a>',
     ])
     filters = "\n".join(
-        f'        <button class="toc__item{" is-active" if k == "all" else ""}" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}"><span>{esc(label)}</span></button>'
+        f'      <button class="pill{" is-active" if k == "all" else ""}" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}">{esc(label)}</button>'
         for k, label in FILTERS)
     links = "\n".join(
         f'        <a class="toc__item" href="#" data-link="{k}"{"" if k == "email" else " target=\"_blank\" rel=\"noopener\""}><span>{label}</span><span class="toc__arrow">↗</span></a>'
@@ -128,12 +128,6 @@ def home():
       <p class="toc__head">Index</p>
 {index}
       </div>
-      <div class="toc__sec toc__sec--work">
-      <p class="toc__head">Work</p>
-      <div class="toc__group" role="toolbar" aria-label="Filter projects">
-{filters}
-      </div>
-      </div>
       <div class="toc__sec toc__sec--links">
       <p class="toc__head">Links</p>
 {links}
@@ -143,6 +137,9 @@ def home():
   </aside>
 
   <main id="work" class="work" aria-label="Work">
+    <div class="filters" role="toolbar" aria-label="Filter projects">
+{filters}
+    </div>
     <div class="work__col">
 {chr(10).join(left)}
     </div>

@@ -30,10 +30,6 @@ const cards = [...document.querySelectorAll(".card[data-tags]")];
 const matches = (card, f) => f === "all" || card.dataset.tags.split(" ").includes(f);
 
 filterBtns.forEach((btn) => {
-  const count = document.createElement("span");
-  count.className = "chip__count";
-  count.textContent = cards.filter((c) => matches(c, btn.dataset.filter)).length;
-  btn.append(count);
   btn.addEventListener("click", () => {
     const f = btn.dataset.filter;
     filterBtns.forEach((b) => {

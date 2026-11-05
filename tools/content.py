@@ -52,7 +52,7 @@ CARDS = [
      "desc": "A product for designers’ workflow.", "tags": "uiux"},
 ]
 
-FILTERS = [("all", "All work"), ("uiux", "UI/UX"), ("motion", "Motion"), ("identity", "Identity"), ("internship", "Internships")]
+FILTERS = [("all", "All"), ("uiux", "UI/UX"), ("motion", "Motion"), ("identity", "Identity"), ("internship", "Internships")]
 
 ABOUT = {
     "headline": "An interaction designer creating intuitive experiences that help people stay in the flow.",

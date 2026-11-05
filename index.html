@@ -30,16 +30,6 @@
         <a class="toc__item" href="/about"><span>About</span><span class="toc__arrow">→</span></a>
         <a class="toc__item" href="/fun"><span>Fun</span><span class="toc__arrow">→</span></a>
       </div>
-      <div class="toc__sec toc__sec--work">
-      <p class="toc__head">Work</p>
-      <div class="toc__group" role="toolbar" aria-label="Filter projects">
-        <button class="toc__item is-active" data-filter="all" aria-pressed="true"><span>All work</span></button>
-        <button class="toc__item" data-filter="uiux" aria-pressed="false"><span>UI/UX</span></button>
-        <button class="toc__item" data-filter="motion" aria-pressed="false"><span>Motion</span></button>
-        <button class="toc__item" data-filter="identity" aria-pressed="false"><span>Identity</span></button>
-        <button class="toc__item" data-filter="internship" aria-pressed="false"><span>Internships</span></button>
-      </div>
-      </div>
       <div class="toc__sec toc__sec--links">
       <p class="toc__head">Links</p>
         <a class="toc__item" href="#" data-link="email"><span>Email</span><span class="toc__arrow">↗</span></a>
@@ -51,6 +41,13 @@
   </aside>
 
   <main id="work" class="work" aria-label="Work">
+    <div class="filters" role="toolbar" aria-label="Filter projects">
+      <button class="pill is-active" data-filter="all" aria-pressed="true">All</button>
+      <button class="pill" data-filter="uiux" aria-pressed="false">UI/UX</button>
+      <button class="pill" data-filter="motion" aria-pressed="false">Motion</button>
+      <button class="pill" data-filter="identity" aria-pressed="false">Identity</button>
+      <button class="pill" data-filter="internship" aria-pressed="false">Internships</button>
+    </div>
     <div class="work__col">
       <article class="card" data-tags="uiux motion" style="--order:0"><a class="card__link" href="/sweetie"><div class="card__media card__media--wide"><img src="/assets/work/sweetie.webp" alt="" loading="eager" /></div><div class="card__cap"><p class="card__title">Sweetie AI</p><p class="card__year">2026</p></div><p class="card__desc">An AI ordering experience for Sweetgreen that turns one word into a starting bowl.</p></a></article>
       <article class="card" data-tags="motion identity" style="--order:2"><a class="card__link" href="/wired"><div class="card__media card__media--wide"><video src="/assets/work/wired.mp4" poster="/assets/work/wired.webp" muted loop playsinline preload="none" data-hover-play></video></div><div class="card__cap"><p class="card__title">WIRED logo reveal</p><p class="card__year">2024</p></div><p class="card__desc">A 3D logo reveal built from soft-body materials in Cinema 4D.</p></a></article>
