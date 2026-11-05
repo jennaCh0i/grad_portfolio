@@ -128,7 +128,7 @@ h1, h2 { margin: 0; font-weight: 400; }
   align-items: start;
   margin-left: var(--main-x);
   margin-right: var(--margin);
-  padding-top: 12px; /* filter pills sit on the same line as the logo and clock */
+  padding-top: 52px;
 }
 .work__col { display: flex; flex-direction: column; gap: 28px; }
 
