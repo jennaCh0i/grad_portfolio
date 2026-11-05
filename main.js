@@ -38,8 +38,53 @@ filterBtns.forEach((btn) => {
       b.setAttribute("aria-pressed", String(on));
     });
     cards.forEach((c) => { c.hidden = !matches(c, f); });
+    relayout();
   });
 });
+
+// 2 / 3 column switch — re-deals the cards into N columns, each to the shortest one
+const work = document.querySelector(".work");
+const colBtns = [...document.querySelectorAll("[data-cols]")];
+let cols = 2;
+try { cols = Number(localStorage.getItem("cols")) === 3 ? 3 : 2; } catch (e) {}
+const ordered = [...cards].sort((a, b) => a.style.getPropertyValue("--order") - b.style.getPropertyValue("--order"));
+
+function relayout() {
+  if (!work) return;
+  const n = window.matchMedia("(max-width: 900px)").matches ? 2 : cols;
+  work.style.setProperty("--cols", n);
+  work.classList.toggle("work--3", n === 3);
+  work.querySelectorAll(".work__col").forEach((c) => c.remove());
+  const columns = Array.from({ length: n }, () => {
+    const c = document.createElement("div");
+    c.className = "work__col";
+    work.append(c);
+    return c;
+  });
+  const heights = new Array(n).fill(0);
+  ordered.forEach((card) => {
+    if (card.hidden) { columns[0].append(card); return; }
+    const i = heights.indexOf(Math.min(...heights));
+    columns[i].append(card);
+    heights[i] += card.getBoundingClientRect().height || 1;
+  });
+  colBtns.forEach((b) => {
+    const on = Number(b.dataset.cols) === cols;
+    b.classList.toggle("is-active", on);
+    b.setAttribute("aria-pressed", String(on));
+  });
+}
+
+colBtns.forEach((b) => b.addEventListener("click", () => {
+  cols = Number(b.dataset.cols);
+  try { localStorage.setItem("cols", cols); } catch (e) {}
+  relayout();
+}));
+if (work) {
+  relayout();
+  let t;
+  window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(relayout, 150); });
+}
 
 // Card videos that only play on hover (or while on screen, on touch devices)
 const hoverVideos = [...document.querySelectorAll("video[data-hover-play]")];

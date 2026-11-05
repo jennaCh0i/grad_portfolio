@@ -123,7 +123,7 @@ h1, h2 { margin: 0; font-weight: 400; }
    ------------------------------------------------------------------ */
 .work {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr));
   gap: 16px;
   align-items: start;
   margin-left: var(--main-x);
@@ -152,6 +152,31 @@ h1, h2 { margin: 0; font-weight: 400; }
 }
 .pill:hover { background: #e2e2e2; color: var(--ink); }
 .pill.is-active { background: var(--ink); color: #fff; }
+
+/* 2 / 3 column switch, right end of the filter row */
+.cols {
+  margin-left: auto;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: #ececec;
+}
+.cols__btn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 24px;
+  border-radius: 999px;
+  color: #999;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.cols__btn:hover { color: var(--ink); }
+.cols__btn.is-active { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); }
+.cols__icon { display: flex; gap: 2px; }
+.cols__icon i { display: block; width: 4px; height: 11px; border-radius: 1px; background: currentColor; }
+.cols__btn[data-cols="3"] .cols__icon i { width: 3px; }
+.work--3 .card__desc { font-size: 12px; }
 .card { animation: card-in 0.4s ease both; }
 .card[hidden] { display: none; }
 @keyframes card-in { from { opacity: 0; transform: translateY(6px); } }
@@ -372,6 +397,7 @@ h1, h2 { margin: 0; font-weight: 400; }
   .work { margin: 32px var(--margin) 0; padding-top: 0; }
   .signoff { margin-left: var(--margin); }
   .home::after { left: 0; height: 56px; }
+  .work { --cols: 2 !important; }
   /* Index · Work · Links side by side instead of one long list */
   .toc {
     display: grid;
@@ -410,6 +436,7 @@ h1, h2 { margin: 0; font-weight: 400; }
   .side { margin-top: 52px; }
   .side__intro { gap: 1em; }
   .toc { grid-template-columns: 1fr 1fr; row-gap: 18px; }
+  .cols { display: none; }
   /* filters scroll sideways in one row */
   .filters {
     flex-wrap: nowrap;

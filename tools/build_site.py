@@ -146,6 +146,10 @@ def home():
   <main id="work" class="work" aria-label="Work">
     <div class="filters" role="toolbar" aria-label="Filter projects">
 {filters}
+      <div class="cols" role="group" aria-label="Columns">
+        <button class="cols__btn is-active" data-cols="2" aria-pressed="true" aria-label="2 columns" title="2 columns"><span class="cols__icon"><i></i><i></i></span></button>
+        <button class="cols__btn" data-cols="3" aria-pressed="false" aria-label="3 columns" title="3 columns"><span class="cols__icon"><i></i><i></i><i></i></span></button>
+      </div>
     </div>
     <div class="work__col">
 {chr(10).join(left)}
