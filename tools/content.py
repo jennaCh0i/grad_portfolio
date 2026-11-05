@@ -13,9 +13,16 @@ SITE = {
     "city": "Pasadena",
     "timezone": "America/Los_Angeles",
     "updated": "11.01.2026",
-    "bio": "Jenna Choi is a designer and visual storyteller working across motion, graphic and interaction design. She creates experiences that help people stay in the flow.",
-    "currently": "Currently studying Interaction Design at ArtCenter.",
-    "previously": "Previously @Apple, @Tesla and @Filmograph LA.",  # shown in blue
+    # Home sidebar (short)
+    "bio": "Jenna Choi is an interaction designer with a background in graphic design and motion, creating intuitive experiences that help people stay in the flow.",
+    "currently": "Senior at ArtCenter.",
+    "previously": "Previously @Apple and @Tesla.",  # shown in blue
+    # About page (full intro)
+    "intro": [
+        "Hi, I’m Jenna Choi, a senior studying Interaction Design at ArtCenter, with a background in graphic design and motion.",
+        "I’ve interned on Apple’s Marketing Communication design team and at Tesla.",
+        "My background in motion and creative technology led me to product design, where I focus on understanding users’ needs and creating intuitive experiences that help them stay in the flow.",
+    ],
     "signoff": "Thanks for stopping by.",
 }
 
@@ -48,7 +55,7 @@ CARDS = [
 FILTERS = [("all", "All work"), ("uiux", "UI/UX"), ("motion", "Motion"), ("identity", "Identity"), ("internship", "Internships")]
 
 ABOUT = {
-    "headline": "A designer and visual storyteller who shares emotion through motion.",
+    "headline": "An interaction designer creating intuitive experiences that help people stay in the flow.",
     "lists": [
         ("Education", [("ArtCenter College of Design", "B.S. Interaction Design (previously B.F.A. Graphic Design)", "Dec 2026")]),
         ("Experience", [("Apple", "Marcom Design Intern", "02.2026 – 08.2026"),

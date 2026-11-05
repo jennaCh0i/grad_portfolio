@@ -112,7 +112,7 @@ def home():
     links = "\n".join(
         f'        <a class="toc__item" href="#" data-link="{k}"{"" if k == "email" else " target=\"_blank\" rel=\"noopener\""}><span>{label}</span><span class="toc__arrow">↗</span></a>'
         for k, label in [("email", "Email"), ("linkedin", "LinkedIn"), ("resume", "Résumé")])
-    return head(f'{SITE["name"]} — Designer', SITE["bio"], "home") + f'''
+    return head(f'{SITE["name"]} — Interaction Designer', SITE["bio"], "home") + f'''
   <header class="topbar">
     <a class="mark" href="/" aria-label="{SITE["name"]} — home"></a>
     {CLOCK}
@@ -234,7 +234,7 @@ def about():
         for k, label in [("email", "Email"), ("linkedin", "LinkedIn"), ("resume", "Résumé")])
     parts = [f'    <h1 class="art__title">{esc(ABOUT["headline"])}</h1>',
              "    " + two(f'<p class="lbl">Contact</p>{contact}',
-                         f'<p class="lbl">Overview</p><p>{esc(SITE["bio"])}</p><p>{esc(SITE["currently"])} <span class="accent">{esc(SITE["previously"])}</span></p>', "two--intro"),
+                         f'<p class="lbl">Overview</p><p>{esc(SITE["intro"][0])} <span class="accent">{esc(SITE["intro"][1])}</span></p><p>{esc(SITE["intro"][2])}</p>', "two--intro"),
              "    " + DIVIDER]
     for label, items in ABOUT["lists"]:
         rows = "".join(
